@@ -247,11 +247,11 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="kicker">Grafický manuál · v1.4</div>
+    <div class="kicker">Grafický manuál · v1.5</div>
     <h1>Jeden vizuální systém, čtyři&nbsp;+&nbsp;jedna barva</h1>
     <p class="lede">Sdílený dark-first systém napříč jakubsevela.cz, ethel.cz a feedco.cz. Značky se odlišují jen akcentní barvou a wordmarkem — typografie, komponenty a tón zůstávají stejné.</p>
     <div class="meta-row">
-      <span><b>Verze:</b> 1.4</span>
+      <span><b>Verze:</b> 1.5</span>
       <span><b>Aktualizováno:</b> 26. 7. 2026</span>
       <span><b>Stav:</b> živý dokument — mění se s rozhodnutími</span>
     </div>
@@ -464,7 +464,7 @@
     <div class="section-head">
       <div class="num">05</div>
       <h2>Monogramy</h2>
-      <p>Pro čtvercové formáty — favicon, avatar, ikona aplikace. Sazba vždy jako jeden textový běh, tečka sedí na účaří jako běžná interpunkce, nikdy skládaná zvlášť.</p>
+      <p>Pro čtvercové formáty — favicon, avatar, ikona aplikace. Sazba jako jeden textový běh, tečka sedí na účaří jako běžná interpunkce, nikdy skládaná zvlášť.</p>
     </div>
     <div class="mono-grid">
       <div class="mono-tile">
@@ -483,6 +483,49 @@
         <div class="glyph">e<span class="dot" style="color:var(--neutral)">.</span></div>
         <div class="cap">ethel · admin</div>
       </div>
+    </div>
+
+    <h3 style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:15px;margin:44px 0 8px;">V kreslených formátech je tečka plný kruh</h3>
+    <p style="color:var(--text-2);font-size:15px;max-width:660px;">
+      <b style="color:var(--text)">Space Grotesk kreslí tečku jako zaoblený čtvereček</b>, ne kolečko. Ve wordmarku
+      o 20&nbsp;px si toho nikdo nevšimne, v monogramu nafouknutém na sto a víc pixelů je hranatost
+      vidět. Proto: kdekoli se monogram <b style="color:var(--text)">kreslí</b> — favicon, avatar,
+      ikona aplikace, ilustrace — se tečka sází jako <b style="color:var(--text)">plný kruh</b>
+      v přesné geometrii, kterou by měla sazba. <b style="color:var(--text)">V živém textu</b>
+      (navigace, patička, nadpisy) <b style="color:var(--text)">zůstává znak</b>; rozdíl je tam pod
+      jeden pixel a kruh by musel být pseudo-elementem. Rozhodl Jakub 26.&nbsp;7.
+    </p>
+    <p style="color:var(--text-2);font-size:15px;max-width:660px;margin-top:14px;">
+      Čísla plynou z metrik fontu: tečka řezu&nbsp;700 má bbox 190&nbsp;×&nbsp;190 jednotek se středem
+      (149,&nbsp;81) a advance 298. Po zvětšení na 125&nbsp;% vychází na 1&nbsp;em:
+    </p>
+    <div class="mono" style="font-size:13px;color:var(--text-2);line-height:2;margin-top:10px;">
+      poloměr <b style="color:var(--text)">0,11875 em</b> &nbsp;·&nbsp;
+      střed nad účařím <b style="color:var(--text)">0,10125 em</b> &nbsp;·&nbsp;
+      střed od pera <b style="color:var(--text)">0,18625 em</b> &nbsp;·&nbsp;
+      advance <b style="color:var(--text)">0,3725 em</b>
+    </div>
+    <p style="color:var(--text-2);font-size:15px;max-width:660px;margin-top:14px;">
+      Pro <span class="mono" style="font-size:13px;">f</span> na 102&nbsp;px to dělá poloměr 12,25&nbsp;bodu
+      se středem 10,38 nad účařím a 22&nbsp;bodů od pravé hrany písmene. Pozor na to, že
+      <b style="color:var(--text)">kulatá tečka účaří přetahuje o 1,75 bodu dolů</b> — posadit ji dnem
+      na účaří je chyba, opticky pak sedí výš než rovné dotahy.
+    </p>
+
+    <h3 style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:15px;margin:36px 0 8px;">Nasazené favicony</h3>
+    <p style="color:var(--text-2);font-size:15px;max-width:660px;margin-bottom:16px;">
+      Dlaždice <span class="mono" style="font-size:13px;">#16161a</span>, radius 22,5&nbsp;%, monogram
+      v <span class="mono" style="font-size:13px;">#e8e6e3</span>, tečka v accentu značky. Písmena jsou
+      převedená na cesty — favicon nemá k dispozici webfont. Generuje je
+      <span class="mono" style="font-size:13px;">scripts/make-icons.py</span> přímo z obrysů Space Grotesku,
+      takže se nekreslí ručně a nemůžou se rozejít. <b style="color:var(--text)">apple-touch-icon má
+      rohy ostré</b> — iOS si je zaobluje samo a dvojité zaoblení vypadá špatně.
+    </p>
+    <div class="mono-grid" style="align-items:flex-end;">
+      <div style="text-align:center;"><img src="/favicon.svg" width="96" height="96" alt="favicon jakubsevela.cz" style="display:block;border-radius:0;"><div class="cap" style="margin-top:8px;">jakubsevela.cz</div></div>
+      <div style="text-align:center;"><img src="/favicon.svg" width="48" height="48" alt="" style="display:block;"><div class="cap" style="margin-top:8px;">48</div></div>
+      <div style="text-align:center;"><img src="/favicon.svg" width="32" height="32" alt="" style="display:block;"><div class="cap" style="margin-top:8px;">32</div></div>
+      <div style="text-align:center;"><img src="/favicon.svg" width="16" height="16" alt="" style="display:block;"><div class="cap" style="margin-top:8px;">16</div></div>
     </div>
   </div>
 </section>
@@ -785,6 +828,7 @@
   <div class="wrap">
     <div class="comp-label" style="margin-bottom:14px;">Changelog</div>
     <div class="changelog">
+      <div class="row"><div class="d">26. 7. 2026</div><div>v1.5 — <b>tečka v kreslených formátech je plný kruh</b> (rozhodl Jakub). Space Grotesk ji kreslí jako zaoblený čtvereček, což je ve velkém vidět; v živém textu zůstává znak. Doplněna přesná geometrie z metrik fontu a vygenerovány monogramové favicony pro všechny tři weby — předtím měl každý web ikonu z jiné doby a žádná nebyla v brandu (feedco.cz neměl favicon vůbec).</div></div>
       <div class="row"><div class="d">26. 7. 2026</div><div>v1.4 — přidána sekce Reference: karta quote-card (vzor jakubsevela.cz, rozhodl Jakub) jako jednotná podoba pro všechny weby; feedco.cz převedeno z původního seznamu s velkými avatary. Pravidla mřížky podle počtu referencí, fallback iniciály, zákaz karuselu.</div></div>
       <div class="row"><div class="d">26. 7. 2026</div><div>v1.3 — přidána sekce Formulář (labely v DM Mono, focus s prstencem z tintu, stavové bannery) a stavová terakota <span class="mono" style="font-size:12.5px;">#e0705c</span> pro chybové stavy — šestá barva palety, odvozená stejným vzorcem jako accenty. Neutrální šedá dostala roli stavu „počkejte" (rate limit). Nasazeno na feedco.cz.</div></div>
       <div class="row"><div class="d">26. 7. 2026</div><div>v1.2 — přidána sekce Layout a fonty: kontejner 1200 px, hero od kraje ke kraji s fotkou vázanou na textový sloupec, řezy nadpisů (velké 400 / malé 500) a self-hosting fontů včetně povinného <span class="mono" style="font-size:12.5px;">unicode-range</span> pro češtinu. Tokeny doplněny o typografii a layout. Ověřeno v praxi na jakubsevela.cz.</div></div>
