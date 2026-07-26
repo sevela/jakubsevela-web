@@ -234,19 +234,24 @@ section.alt { background: var(--bg-alt); }
 .quote-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 30px; display: flex; flex-direction: column; }
 .quote-mark { font-family: var(--font-display); font-size: 2.4rem; line-height: 0.6; color: var(--accent); opacity: 0.55; margin-bottom: 14px; }
 .quote-card .body { color: var(--text-2); font-size: 0.98rem; flex: 1; }
-.quote-card .who { display: flex; align-items: center; gap: 14px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
+.quote-card .who { display: flex; align-items: center; gap: 16px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
 .avatar {
-  width: 46px; height: 46px; border-radius: 50%; flex: 0 0 46px; object-fit: cover;
+  width: 58px; height: 58px; border-radius: 50%; flex: 0 0 58px; object-fit: cover;
   border: 1px solid var(--border-2); background: var(--bg-alt);
 }
 .avatar-initials {
-  width: 46px; height: 46px; border-radius: 50%; flex: 0 0 46px;
+  width: 58px; height: 58px; border-radius: 50%; flex: 0 0 58px;
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-l);
+  font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent-l);
   background: var(--accent-tint); border: 1px solid var(--accent-border);
 }
-.quote-card .name { font-family: var(--font-body); font-weight: 500; font-size: 0.95rem; color: var(--text); }
-.quote-card .role { font-size: 0.83rem; color: var(--text-3); line-height: 1.45; }
+/* jméno / pozice / firma — vždy tři řádky, dlouhý text se zkrátí (…), ne zalomí */
+.quote-card .who-info { min-width: 0; }
+.quote-card .name, .quote-card .role, .quote-card .company {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.quote-card .name { font-family: var(--font-body); font-weight: 500; font-size: 0.95rem; color: var(--text); line-height: 1.3; }
+.quote-card .role, .quote-card .company { font-size: 0.83rem; color: var(--text-3); line-height: 1.4; }
 
 /* ---------- kontakt ---------- */
 .contact-card { background: var(--card); border: 1px solid var(--border); border-left: 2px solid var(--accent); border-radius: var(--radius-card); padding: 26px 30px; }
@@ -510,9 +515,10 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
         <div class="body">S Jakubem spolupracujeme již tři roky na pluginu Helios podporující digitalizaci účetnictví. Jakub je velmi svědomitý, profesionální, spolehlivý v dohodnutých termínech i kvalitě odvedené práce. Chválím vysoké nasazení a profesionální přístup. Lidsky je mi velmi blízký a velmi si vážím jeho přístupu k našim klientům i k celému projektu.</div>
         <figcaption class="who">
           <img class="avatar" src="images/resource/karin.png" alt="Karin Fuentesová" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar-initials',textContent:'KF'}))">
-          <div>
-            <div class="name">Karin Fuentesová</div>
-            <div class="role">CEO, Digitoo s.r.o.</div>
+          <div class="who-info">
+            <div class="name" title="Karin Fuentesová">Karin Fuentesová</div>
+            <div class="role" title="CEO">CEO</div>
+            <div class="company" title="Digitoo s.r.o.">Digitoo s.r.o.</div>
           </div>
         </figcaption>
       </figure>
@@ -522,9 +528,10 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
         <div class="body">Pan Ševela je profesionál, který své práci rozumí, o zadání přemýšlí a často nachází vlastní a lepší řešení problému. Spolupracujeme s ním již déle než rok a všechny naše požadavky splnil a dotáhl do konce. V rozsahu a ceně platí předem domluvené.</div>
         <figcaption class="who">
           <img class="avatar" src="images/resource/altman.jpg" alt="Petr Altman, MBA" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar-initials',textContent:'PA'}))">
-          <div>
-            <div class="name">Petr Altman, MBA</div>
-            <div class="role">Jednatel, VERKON s.r.o.</div>
+          <div class="who-info">
+            <div class="name" title="Petr Altman, MBA">Petr Altman, MBA</div>
+            <div class="role" title="Jednatel společnosti">Jednatel společnosti</div>
+            <div class="company" title="VERKON s.r.o.">VERKON s.r.o.</div>
           </div>
         </figcaption>
       </figure>
@@ -534,9 +541,10 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
         <div class="body">S Kubou jsme začali spolupracovat krátce po implementaci Heliosu. Díky jeho profesionálnímu a kreativnímu přístupu jsme dokázali původní obecné nastavení Heliosu přizpůsobit specifickým požadavkům naší společnosti. Největším přínosem je rychlá a přímá spolupráce, kde nic není problém. Díky, Kubo</div>
         <figcaption class="who">
           <img class="avatar" src="images/resource/filip.jpg" alt="Filip Olejár" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar-initials',textContent:'FO'}))">
-          <div>
-            <div class="name">Filip Olejár</div>
-            <div class="role">Logistic &amp; Controlling Manager, DOMO SERVICE spol. s r.o.</div>
+          <div class="who-info">
+            <div class="name" title="Filip Olejár">Filip Olejár</div>
+            <div class="role" title="Logistic &amp; Controlling Manager">Logistic &amp; Controlling Manager</div>
+            <div class="company" title="DOMO SERVICE spol. s r.o.">DOMO SERVICE spol. s r.o.</div>
           </div>
         </figcaption>
       </figure>
@@ -546,9 +554,10 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
         <div class="body">Pan Ševela pro nás od roku 2019 připravuje datový sklad a spolupráce probíhá přesně dle dohody a mých očekávání. Domluvené funkcionality pan Ševela připravuje ve vysoké kvalitě. Oceňuji především jeho flexibilitu, díky které je naše IT schopno pružně reagovat na změny zadání od interních zákazníků.</div>
         <figcaption class="who">
           <div class="avatar-initials">VV</div>
-          <div>
-            <div class="name">Vladimír Vojta</div>
-            <div class="role">IT Manager CZ&amp;SK, Loomis Czech Republic a.s.</div>
+          <div class="who-info">
+            <div class="name" title="Vladimír Vojta">Vladimír Vojta</div>
+            <div class="role" title="IT Manager CZ&amp;SK">IT Manager CZ&amp;SK</div>
+            <div class="company" title="Loomis Czech Republic a.s.">Loomis Czech Republic a.s.</div>
           </div>
         </figcaption>
       </figure>
@@ -558,9 +567,10 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
         <div class="body">Jakuba známe již několik let a za naši společnost oceňujeme hlavně jeho přístup, ochotu a znalosti. Využíváme jeho služeb většinou v pořízení náročnějších programátorských úprav IS. Je to vždy příjemná spolupráce a věříme, že bude stejná i do budoucna.</div>
         <figcaption class="who">
           <div class="avatar-initials">JK</div>
-          <div>
-            <div class="name">Jiří Král</div>
-            <div class="role">Administrátor IS, GUMEX, spol. s r.o.</div>
+          <div class="who-info">
+            <div class="name" title="Jiří Král">Jiří Král</div>
+            <div class="role" title="Administrátor IS">Administrátor IS</div>
+            <div class="company" title="GUMEX, spol. s r.o.">GUMEX, spol. s r.o.</div>
           </div>
         </figcaption>
       </figure>
@@ -570,9 +580,10 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
         <div class="body">Pan Ševela nám velice pomohl s problémem, se kterým jsme se potýkali v programu HELIOS Orange, vytvořením externí akce. Naprogramování akce proběhlo do týdne od zadání zakázky a akce pracuje dle našich představ. Oceňujeme jeho profesionální přístup.</div>
         <figcaption class="who">
           <div class="avatar-initials">PŠ</div>
-          <div>
-            <div class="name">Petr Štěpán</div>
-            <div class="role">Asistent prodeje, MIRA MAR s.r.o.</div>
+          <div class="who-info">
+            <div class="name" title="Petr Štěpán">Petr Štěpán</div>
+            <div class="role" title="Asistent prodeje">Asistent prodeje</div>
+            <div class="company" title="MIRA MAR s.r.o.">MIRA MAR s.r.o.</div>
           </div>
         </figcaption>
       </figure>
