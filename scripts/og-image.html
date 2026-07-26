@@ -52,23 +52,31 @@
     font-weight: 500;
     font-size: 34px;
     text-transform: lowercase;
-    margin-bottom: 52px;
+    margin-bottom: 44px;
   }
   .wordmark .dot { color: var(--accent); font-weight: 700; font-size: 1.25em; line-height: 1; }
 
   h1 {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 58px;
+    font-size: 76px;
     line-height: 1.28;
     letter-spacing: -0.015em;
   }
-  h1 .line { display: block; }
-  h1 .hl {
+  h1 em { font-style: italic; color: var(--accent-l); }
+
+  .label {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 20px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--accent-l);
-    text-decoration: underline;
-    text-underline-offset: 8px;
-    text-decoration-thickness: 3px;
+    padding: 8px 18px;
+    border: 1px solid var(--accent-border);
+    background: var(--accent-tint);
+    border-radius: 8px;
+    margin-bottom: 30px;
   }
 
   .footer-row {
@@ -88,11 +96,8 @@
 
   <div class="container">
     <div class="wordmark">jakub<span class="dot">.</span>ševela</div>
-    <h1>
-      <span class="line">Vyvíjím doplňky pro <span class="hl">HELIOS Inuvio</span>.</span>
-      <span class="line">Integruji systémy do funkčních celků.</span>
-      <span class="line">Automatizuji rutinní práci.</span>
-    </h1>
+    <div class="label">Helios Inuvio specialista</div>
+    <h1>Pomáhám firmám získat<br>z Heliosu <em>maximum</em></h1>
   </div>
 
   <div class="footer-row">

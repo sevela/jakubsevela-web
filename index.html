@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <title>Jakub Ševela - Specialista HELIOS Inuvio</title>
-<meta name="description" content="Vyvíjím doplňky pro HELIOS Inuvio. Integruji systémy do funkčních celků. Automatizuji rutinní práci.">
+<meta name="description" content="Pomáhám firmám získat z Heliosu maximum. Specializuji se na vývoj doplňků a rozšíření Heliosu — zjednodušení práce, automatizace rutinních úkolů a integrace systémů.">
 <meta name="keywords" content="Inuvio, HELIOS Orange, programátor HELIOS, HELIOS e-shop, HELIOS integrace, HELIOS Comgate, konzultant HELIOS, řešení HELIOS, vývoj HELIOS, rozšíření HELIOS, HELIOS partner, HELIOS Upgates, Upgates">
 <meta name="author" content="Jakub Ševela">
 <link rel="canonical" href="https://jakubsevela.cz/">
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="cs_CZ">
 <meta property="og:url" content="https://jakubsevela.cz/">
 <meta property="og:title" content="Jakub Ševela - Specialista HELIOS Inuvio">
-<meta property="og:description" content="Vyvíjím doplňky pro HELIOS Inuvio. Integruji systémy do funkčních celků. Automatizuji rutinní práci.">
+<meta property="og:description" content="Pomáhám firmám získat z Heliosu maximum. Specializuji se na vývoj doplňků a rozšíření Heliosu — zjednodušení práce, automatizace rutinních úkolů a integrace systémů.">
 <meta property="og:image" content="https://jakubsevela.cz/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -58,7 +58,10 @@ a { color: inherit; }
 .text-link { color: var(--accent-l); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .text-link:hover { text-decoration-thickness: 2px; }
 
-.wrap { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+/* Obsahový kontejner je záměrně omezený — řádek textu přes celou šířku
+   2560px monitoru se nedá číst. Hero jde od kraje ke kraji, protože fotka
+   uvnitř kontejneru by vypadala nalepeně — text v něm ale drží stejný .wrap. */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
 
 /* ---------- wordmark ---------- */
 .wordmark {
@@ -104,26 +107,61 @@ nav.site .wordmark { font-size: 1.22rem; }
 .btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
 
 /* ---------- hero ---------- */
+/* Jediná sekce, která jde od kraje ke kraji — fotka v kontejneru
+   by vypadala jako obrázek nalepený do stránky. Text uvnitř ale drží
+   stejný .wrap jako zbytek webu, aby levá hrana lícovala. */
 header.hero {
-  padding: 190px 0 120px;
-  border-bottom: 1px solid var(--border);
   position: relative; overflow: hidden;
+  min-height: 84vh;
+  display: flex; align-items: flex-end;
+  padding: 170px 0 96px;
+  border-bottom: 1px solid var(--border);
+}
+/* Levá hrana fotky se drží konce textového sloupce, ne procenta viewportu.
+   Jinak by na širokém monitoru fotka podjela text. */
+.hero-photo { position: absolute; top: 0; right: 0; bottom: 0; left: max(46%, calc(50% - 60px)); }
+.hero-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 18%;
+  filter: brightness(0.82) saturate(0.95);
+}
+.hero-photo::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    linear-gradient(to right, var(--bg) 0%, rgba(10,10,12,0.72) 26%, rgba(10,10,12,0) 64%),
+    linear-gradient(to top, var(--bg) 0%, rgba(10,10,12,0.30) 16%, rgba(10,10,12,0) 40%),
+    linear-gradient(to bottom, rgba(10,10,12,0.75) 0%, rgba(10,10,12,0) 16%);
 }
 header.hero::before {
-  content: ''; position: absolute; top: -220px; right: -180px;
-  width: 640px; height: 640px; border-radius: 50%;
+  content: ''; position: absolute; top: -260px; left: -200px;
+  width: 680px; height: 680px;
   background: radial-gradient(circle, rgba(var(--accent-rgb),0.10) 0%, rgba(var(--accent-rgb),0) 68%);
   pointer-events: none;
 }
 header.hero .wrap { position: relative; z-index: 1; }
-header.hero h1 {
-  font-size: clamp(2.1rem, 5.2vw, 3.5rem);
-  line-height: 1.22;
-  max-width: 20ch;
+.hero-label {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--accent-l);
+  padding: 0.34rem 0.9rem;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-tint);
+  border-radius: var(--radius-btn);
+  margin-bottom: 1.6rem;
 }
-header.hero h1 .line { display: block; }
-header.hero h1 .line + .line { margin-top: 0.4em; }
-header.hero h1 .hl { color: var(--accent-l); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 2px; }
+header.hero h1 {
+  font-size: clamp(2.2rem, 4.7vw, 3.6rem);
+  line-height: 1.18;
+  max-width: 15ch;
+}
+header.hero h1 em { font-style: italic; color: var(--accent-l); }
+.hero-desc {
+  color: var(--text-2);
+  font-size: 1.05rem;
+  max-width: 52ch;
+  margin: 1.5rem 0 2.3rem;
+}
 
 /* ---------- sections ---------- */
 section { padding: 96px 0; border-bottom: 1px solid var(--border); }
@@ -238,7 +276,18 @@ footer .wordmark { font-size: 1.1rem; opacity: 0.85; }
   }
   .nav-links.open { display: flex; }
   .nav-links a { display: block; padding: 12px 0; font-size: 0.85rem; }
-  header.hero { padding: 140px 0 84px; }
+  /* Vyšší hero, aby text začínal až pod obličejem a nepřekrýval ho. */
+  header.hero { padding: 130px 0 64px; min-height: 96vh; min-height: 96svh; }
+  /* Na mobilu je fotka pozadím celé sekce, ne sloupcem vedle textu.
+     Přechod jde zdola nahoru, aby text držel kontrast. */
+  .hero-photo { left: 0; }
+  .hero-photo img { object-position: 47% 6%; }
+  .hero-photo::after {
+    background:
+      linear-gradient(to top, var(--bg) 0%, var(--bg) 26%, rgba(10,10,12,0.88) 46%, rgba(10,10,12,0.55) 68%, rgba(10,10,12,0.2) 100%),
+      linear-gradient(to bottom, rgba(10,10,12,0.8) 0%, rgba(10,10,12,0) 22%);
+  }
+  header.hero h1 { max-width: none; }
   section { padding: 72px 0; }
   .wrap { padding: 0 22px; }
   .card, .list-card { padding: 26px 22px; }
@@ -250,11 +299,11 @@ footer .wordmark { font-size: 1.1rem; opacity: 0.85; }
 }
 </style>
 </head>
-<body id="home">
+<body>
 
 <nav class="site">
   <div class="wrap">
-    <a class="wordmark" href="#home">jakub<span class="dot">.</span>ševela</a>
+    <a class="wordmark" href="#uvod">jakub<span class="dot">.</span>ševela</a>
     <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">☰</button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#reseni">Řešení</a></li>
@@ -265,13 +314,18 @@ footer .wordmark { font-size: 1.1rem; opacity: 0.85; }
   </div>
 </nav>
 
-<header class="hero">
+<header class="hero" id="uvod">
+  <div class="hero-photo">
+    <img src="images/jakub-sevela-hero.jpg" alt="Jakub Ševela" fetchpriority="high" width="2000" height="1333">
+  </div>
   <div class="wrap">
-    <h1>
-      <span class="line">Vyvíjím doplňky pro <span class="hl">HELIOS Inuvio</span>.</span>
-      <span class="line">Integruji systémy do funkčních celků.</span>
-      <span class="line">Automatizuji rutinní práci.</span>
-    </h1>
+    <span class="hero-label">Helios Inuvio specialista</span>
+    <h1>Pomáhám firmám získat z&nbsp;Heliosu <em>maximum</em></h1>
+    <p class="hero-desc">Specializuji se na vývoj doplňků a rozšíření Heliosu s důrazem na zjednodušení práce, automatizaci rutinních úkolů a&nbsp;integraci systémů. Od e-shop konektorů po umělou inteligenci přímo v&nbsp;ERP.</p>
+    <div class="btn-row">
+      <a href="#kontakt" class="btn btn-primary">Nezávazně poptat →</a>
+      <a href="#reseni" class="btn btn-secondary">Hotová řešení</a>
+    </div>
   </div>
 </header>
 
