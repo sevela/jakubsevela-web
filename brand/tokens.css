@@ -1,6 +1,6 @@
 /* ==========================================================================
    Brand tokeny — Jakub Ševela / Ethel / Feedco
-   Zdroj pravdy: https://jakubsevela.cz/brand/ (grafický manuál v1.2, 26. 7. 2026)
+   Zdroj pravdy: https://jakubsevela.cz/brand/ (grafický manuál v1.3, 26. 7. 2026)
    Manuál je jen v tomhle repu (brand/index.html), ostatní repa sem odkazují.
 
    Tenhle soubor je shodný ve všech třech repozitářích (jakubsevela-web,
@@ -37,6 +37,24 @@
 
   /* --- layout --- */
   --content-max: 1200px;   /* obsahový kontejner; hero je výjimka od kraje ke kraji */
+
+  /* --- stavové barvy: společné pro všechny weby (v1.3) ---
+     Stejný odvozovací vzorec jako accenty: 12 % tint, 35 % border,
+     text na tónované ploše vždy v light odstínu. */
+
+  /* chyba — terakota (~10°, stejná šťavnatost jako zbytek palety) */
+  --danger: #e0705c;
+  --danger-l: #ea937f;
+  --danger-rgb: 224, 112, 92;
+  --danger-tint: rgba(var(--danger-rgb), 0.12);
+  --danger-border: rgba(var(--danger-rgb), 0.35);
+
+  /* neutrální šedá — admin/utility role z palety (stav „počkejte", ne chyba) */
+  --neutral: #9c9c9c;
+  --neutral-l: #b5b5b5;
+  --neutral-rgb: 156, 156, 156;
+  --neutral-tint: rgba(var(--neutral-rgb), 0.12);
+  --neutral-border: rgba(var(--neutral-rgb), 0.35);
 
   /* --- accent: jakubsevela.cz = jantar (~40°) --- */
   --accent: #dfa63e;

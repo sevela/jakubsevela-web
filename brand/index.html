@@ -16,6 +16,7 @@
     --feedco:#9ed455;  --feedco-l:#b3de79;
     --reserved:#db6bc0; --reserved-l:#e488cd;
     --neutral:#9c9c9c; --neutral-l:#b5b5b5;
+    --danger:#e0705c;  --danger-l:#ea937f;
 
     --font-mono:'DM Mono', ui-monospace, monospace;
   }
@@ -134,6 +135,62 @@
   .comp-row{ margin-bottom:26px; }
   .comp-row .comp-label{ font-family:var(--font-mono); font-size:12px; color:var(--text-3); margin-bottom:10px; }
 
+  /* formulář — ukázka komponenty (accent = jantar, na produktových webech
+     se mění jen accent blok tokenů) */
+  .fdemo{ --fd:223,166,62; --fd-l:var(--jakub-l); max-width:560px; }
+  .fdemo .field + .field{ margin-top:18px; }
+  .fdemo label{
+    display:block; font-family:var(--font-mono); font-size:12.5px; font-weight:500;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--text-2); margin-bottom:7px;
+  }
+  .fdemo label .opt{ color:var(--text-3); text-transform:none; letter-spacing:.04em; }
+  .fdemo input, .fdemo textarea{
+    width:100%; display:block; font-family:'DM Sans', sans-serif; font-size:15.5px; line-height:1.6;
+    color:var(--text); background:var(--bg-alt);
+    border:1px solid var(--border-2); border-radius:8px; padding:12px 14px; outline:0;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  .fdemo textarea{ min-height:120px; resize:vertical; }
+  .fdemo ::placeholder{ color:var(--text-3); }
+  .fdemo input:hover, .fdemo textarea:hover{ border-color:rgba(255,255,255,.22); }
+  .fdemo input:focus-visible, .fdemo textarea:focus-visible{
+    border-color:rgba(var(--fd),.5); box-shadow:0 0 0 3px rgba(var(--fd),.12);
+  }
+  .fdemo .field.is-invalid input{ border-color:rgba(224,112,92,.35); }
+  .fdemo .field.is-invalid input:focus-visible{
+    border-color:var(--danger); box-shadow:0 0 0 3px rgba(224,112,92,.12);
+  }
+  .fdemo .field-error{ font-size:13.5px; line-height:1.5; color:var(--danger-l); margin-top:6px; }
+  .fdemo .submit-row{ margin-top:24px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .fdemo button[type=submit]{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'DM Sans', sans-serif; font-weight:500; font-size:15px;
+    padding:13px 26px; border-radius:8px; cursor:pointer;
+    background:rgba(var(--fd),.12); border:1px solid rgba(var(--fd),.35); color:var(--fd-l);
+    transition:background .15s, border-color .15s;
+  }
+  .fdemo button[type=submit]:hover{ background:rgba(var(--fd),.18); border-color:rgba(var(--fd),.5); }
+  .fdemo button[type=submit] svg{ width:.9em; height:.9em; fill:currentColor; flex:0 0 auto; }
+  .fdemo .privacy-note{ font-size:13.5px; color:var(--text-3); }
+
+  .fstatus{
+    display:flex; gap:16px; align-items:flex-start; max-width:560px;
+    background:var(--card); border:1px solid rgba(223,166,62,.35);
+    border-radius:12px; padding:20px 22px;
+  }
+  .fstatus + .fstatus{ margin-top:14px; }
+  .fstatus .fs-icon{
+    flex:0 0 auto; width:38px; height:38px; display:grid; place-items:center;
+    border-radius:50%; background:rgba(223,166,62,.12); color:var(--jakub-l);
+  }
+  .fstatus .fs-icon svg{ width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+  .fstatus h4{ font-family:'Lora', serif; font-weight:500; font-size:17px; line-height:1.35; margin-bottom:2px; }
+  .fstatus p{ font-size:14.5px; line-height:1.6; color:var(--text-2); }
+  .fstatus.is-error{ border-color:rgba(224,112,92,.35); }
+  .fstatus.is-error .fs-icon{ background:rgba(224,112,92,.12); color:var(--danger-l); }
+  .fstatus.is-limit{ border-color:rgba(156,156,156,.35); }
+  .fstatus.is-limit .fs-icon{ background:rgba(156,156,156,.12); color:var(--neutral-l); }
+
   /* dos donts */
   .dd-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
   .dd-col h4{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:.05em; text-transform:uppercase; margin-bottom:14px; }
@@ -162,11 +219,11 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="kicker">Grafický manuál · v1.2</div>
+    <div class="kicker">Grafický manuál · v1.3</div>
     <h1>Jeden vizuální systém, čtyři&nbsp;+&nbsp;jedna barva</h1>
     <p class="lede">Sdílený dark-first systém napříč jakubsevela.cz, ethel.cz a feedco.cz. Značky se odlišují jen akcentní barvou a wordmarkem — typografie, komponenty a tón zůstávají stejné.</p>
     <div class="meta-row">
-      <span><b>Verze:</b> 1.2</span>
+      <span><b>Verze:</b> 1.3</span>
       <span><b>Aktualizováno:</b> 26. 7. 2026</span>
       <span><b>Stav:</b> živý dokument — mění se s rozhodnutími</span>
     </div>
@@ -181,6 +238,7 @@
     <a href="#wordmark">Wordmark</a>
     <a href="#monogramy">Monogramy</a>
     <a href="#komponenty">Komponenty</a>
+    <a href="#formular">Formulář</a>
     <a href="#layout">Layout a fonty</a>
     <a href="#pristupnost">Přístupnost</a>
     <a href="#tokeny">Tokeny</a>
@@ -235,7 +293,7 @@
     <div class="section-head">
       <div class="num">02</div>
       <h2>Paleta značek</h2>
-      <p>Čtyři kvadranty barevného kola + jedna čistě neutrální šedá. Žádné dvě se nepletou ani v malé tečce. <b style="color:var(--text)">Aktualizace 25. 7.:</b> Ethel dostala azurovou, magenta jde do zásoby, přibyla neutrální varianta pro admin rozhraní.</p>
+      <p>Čtyři kvadranty barevného kola + neutrální šedá + stavová terakota. Žádné dvě se nepletou ani v malé tečce. Šedá a terakota nejsou značky — jsou to servisní barvy sdílené všemi weby: šedá pro admin/utility, terakota pro chybové stavy.</p>
     </div>
     <div class="brand-grid">
 
@@ -297,6 +355,18 @@
           light &nbsp;<span onclick="copyHex('#b5b5b5', this)">#b5b5b5</span>
         </div>
         <div class="note">Nová (25. 7.). Pro admin panely, nastavení a datové tabulky napříč produkty — kontexty, kde barva značky jen ruší. Wordmark/monogram zůstává, jen tečka přebarvená na neutrál.</div>
+      </div>
+
+      <div class="brand-card">
+        <div class="accent-block" style="background:var(--danger)"></div>
+        <span class="tag" style="background:rgba(224,112,92,.15); color:var(--danger-l)">terakota · ~10°</span>
+        <h3>stavová — chyba</h3>
+        <div class="role">Chybové stavy napříč weby</div>
+        <div class="hexes">
+          accent <span onclick="copyHex('#e0705c', this)">#e0705c</span><br>
+          light &nbsp;<span onclick="copyHex('#ea937f', this)">#ea937f</span>
+        </div>
+        <div class="note">Nová (26. 7., v1.3). Jen pro chybové stavy — nevalidní pole, nedoručený formulář. Stejný odvozovací vzorec jako accenty (12 % tint, 35 % border, text v light). Není to značka a nikdy nestojí jako accent webu; stav „počkejte" (rate limit) jde v neutrální šedé.</div>
       </div>
 
     </div>
@@ -420,10 +490,76 @@
   </div>
 </section>
 
-<section id="layout">
+<section id="formular">
   <div class="wrap">
     <div class="section-head">
       <div class="num">07</div>
+      <h2>Formulář</h2>
+      <p>Jedna komponenta pro všechny tři weby — mění se jen accent blok tokenů (tady jantar). Nasazeno na feedco.cz (26. 7.), hub a ethel.cz stejnou cestou. Backend je sdílená Supabase edge funkce <span class="mono" style="font-size:13px;">web-lead</span>.</p>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-label">pole — label v DM Mono nahoře (stejná role jako labely v kartách tarifů) · placeholder je jen ukázka, ne popis · nepovinné pole označené v labelu, žádné hvězdičky · focus: accent border + prstenec 3 px z tintu (zkus si kliknout)</div>
+      <form class="fdemo" onsubmit="return false">
+        <div class="field">
+          <label for="fd-name">Jméno / název firmy</label>
+          <input type="text" id="fd-name" placeholder="Jan Novák, Firma s.r.o.">
+        </div>
+        <div class="field">
+          <label for="fd-phone">Telefon <span class="opt">— nepovinné</span></label>
+          <input type="tel" id="fd-phone" placeholder="+420 ...">
+        </div>
+        <div class="field is-invalid">
+          <label for="fd-email">E-mail <span class="opt">— ukázka chyby</span></label>
+          <input type="email" id="fd-email" value="jan@firma">
+          <p class="field-error">Bez e-mailu vám nemáme kam odpovědět.</p>
+        </div>
+        <div class="submit-row">
+          <button type="submit">
+            Odeslat zprávu
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.7 8.8 13 8.8 8.9 12.9 10 14l6-6-6-6-1.1 1.1L13 7.2 1.7 7.2z"/></svg>
+          </button>
+          <p class="privacy-note">Odpovídáme do dvou pracovních dnů.</p>
+        </div>
+      </form>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-label">stavy po odeslání — úspěch v accentu webu · chyba v terakotě, vždy s e-mailem jako záložní cestou · limit v neutrální šedé (není to chyba dat, jen „počkejte")</div>
+      <div class="fstatus">
+        <div class="fs-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5 10 18 19.5 6.5"/></svg></div>
+        <div>
+          <h4>Díky za zprávu</h4>
+          <p>Ozveme se do dvou pracovních dnů. Potvrzení jsme poslali i na váš e-mail.</p>
+        </div>
+      </div>
+      <div class="fstatus is-error">
+        <div class="fs-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+        <div>
+          <h4>Zprávu se nepodařilo odeslat</h4>
+          <p>Zkuste to prosím znovu, nebo napište rovnou na e-mail.</p>
+        </div>
+      </div>
+      <div class="fstatus is-limit">
+        <div class="fs-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+        <div>
+          <h4>Zpráv bylo za poslední chvíli víc</h4>
+          <p>Zkuste to prosím za pár minut, nebo napište rovnou na e-mail.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-label">technické zásady</div>
+      <p style="color:var(--text-2); font-size:15px; max-width:640px;">Úspěšné odeslání <b style="color:var(--text)">nahrazuje formulář bannerem</b>; chyba a limit se ukážou nad ním a formulář zůstává vyplněný. Honeypot pole odsunuté <span class="mono" style="font-size:13px;">position:absolute</span> mimo viewport, ne <span class="mono" style="font-size:13px;">display:none</span> — to některé boty přeskočí. Chybové hlášky říkají, co udělat dál, ne co se technicky pokazilo. Hub vyká „mi" (Napište mi), produktové weby „nám".</p>
+    </div>
+  </div>
+</section>
+
+<section id="layout">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">08</div>
       <h2>Layout a fonty</h2>
       <p>Doplněno 26. 7. při přepisu jakubsevela.cz. Platí pro všechny tři weby — bez toho se rozejdou v šířce a v ostrosti nadpisů, i když paletu i písma budou mít stejné.</p>
     </div>
@@ -455,7 +591,7 @@
 <section id="pristupnost">
   <div class="wrap">
     <div class="section-head">
-      <div class="num">08</div>
+      <div class="num">09</div>
       <h2>Přístupnost</h2>
       <p>Změřené kontrastní poměry (WCAG) na obou pozadích. Všechny akcenty splňují AA pro běžný text; light odstíny drží AAA i na kartách — proto je text na tónovaných tlačítkách vždy v light odstínu.</p>
     </div>
@@ -475,6 +611,7 @@
           <tr><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--feedco);">limetková #9ed455 / light</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">11,3 / 12,8</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">10,3 / 11,7</td><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--feedco-l);">AAA</td></tr>
           <tr><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--reserved);">magenta #db6bc0 / light</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">6,5 / 8,2</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">5,9 / 7,5</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">AA / AAA (light)</td></tr>
           <tr><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--neutral);">neutrální #9c9c9c / light</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">7,2 / 9,6</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">6,6 / 8,8</td><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--feedco-l);">AAA (light)</td></tr>
+          <tr><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--danger);">terakota #e0705c / light</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">6,3 / 8,5</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">5,7 / 7,7</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">AA / AAA (light)</td></tr>
           <tr><td style="padding:9px 12px;">text sekundární #8a8a8e</td><td style="padding:9px 12px;">5,8</td><td style="padding:9px 12px;">5,2</td><td style="padding:9px 12px;">AA — nepoužívat pod 14&nbsp;px</td></tr>
         </tbody>
       </table>
@@ -485,7 +622,7 @@
 <section id="tokeny">
   <div class="wrap">
     <div class="section-head">
-      <div class="num">09</div>
+      <div class="num">10</div>
       <h2>CSS tokeny</h2>
       <p>Kompletní sada proměnných k vložení do každého webu. Per-brand blok přepisuje jen <span class="mono" style="font-size:13px;">--accent</span> proměnné.</p>
     </div>
@@ -506,6 +643,11 @@
 
   /* layout */
   --content-max:1200px;   /* hero je výjimka — od kraje ke kraji */
+
+  /* stavové barvy — společné pro všechny weby (v1.3) */
+  --danger:#e0705c;  --danger-l:#ea937f;  --danger-rgb:224,112,92;
+  --neutral:#9c9c9c; --neutral-l:#b5b5b5; --neutral-rgb:156,156,156;
+  /* odvozeniny stejným vzorcem: rgba(--x-rgb,.12) tint, rgba(--x-rgb,.35) border */
 }
 
 /* jakubsevela.cz */    --accent:#dfa63e; --accent-l:#eab55c; --accent-rgb:223,166,62;
@@ -533,7 +675,7 @@
 <section id="pravidla">
   <div class="wrap">
     <div class="section-head">
-      <div class="num">10</div>
+      <div class="num">11</div>
       <h2>Ano / Ne</h2>
     </div>
     <div class="dd-grid">
@@ -546,6 +688,7 @@
           <li>Wordmark vždy malými písmeny, tečka bold 125 % — bez výjimek.</li>
           <li>Nadpisy přes tokeny řezů: velké 400, malé 500. Čím větší nadpis, tím lehčí.</li>
           <li>Fonty self-hostované, s <span class="mono" style="font-size:12.5px;">unicode-range</span> pro latin i latin-ext.</li>
+          <li>Chybové stavy v terakotě, stav „počkejte" v neutrální šedé — nikdy v accentu značky.</li>
         </ul>
       </div>
       <div class="dd-col dont">
@@ -557,6 +700,7 @@
           <li>Skládat písmeno a tečku monogramu jako dva samostatně centrované prvky — vždy jeden textový běh.</li>
           <li>Roztahovat obsah přes celou šířku okna. Kontejner 1200 px; od kraje ke kraji jde jen hero.</li>
           <li>Tahat písma z <span class="mono" style="font-size:12.5px;">fonts.googleapis.com</span> — a nikdy ne bez <span class="mono" style="font-size:12.5px;">unicode-range</span>.</li>
+          <li>Terakota kdekoli mimo chybové stavy — není to accent a nesmí začít soupeřit se značkami.</li>
         </ul>
       </div>
     </div>
@@ -567,6 +711,7 @@
   <div class="wrap">
     <div class="comp-label" style="margin-bottom:14px;">Changelog</div>
     <div class="changelog">
+      <div class="row"><div class="d">26. 7. 2026</div><div>v1.3 — přidána sekce Formulář (labely v DM Mono, focus s prstencem z tintu, stavové bannery) a stavová terakota <span class="mono" style="font-size:12.5px;">#e0705c</span> pro chybové stavy — šestá barva palety, odvozená stejným vzorcem jako accenty. Neutrální šedá dostala roli stavu „počkejte" (rate limit). Nasazeno na feedco.cz.</div></div>
       <div class="row"><div class="d">26. 7. 2026</div><div>v1.2 — přidána sekce Layout a fonty: kontejner 1200 px, hero od kraje ke kraji s fotkou vázanou na textový sloupec, řezy nadpisů (velké 400 / malé 500) a self-hosting fontů včetně povinného <span class="mono" style="font-size:12.5px;">unicode-range</span> pro češtinu. Tokeny doplněny o typografii a layout. Ověřeno v praxi na jakubsevela.cz.</div></div>
       <div class="row"><div class="d">25. 7. 2026</div><div>v1.1 — oprava: tečka wordmarku nyní skutečně 125 % (v1.0 byla jen bold). Přidány sekce Přístupnost (změřené WCAG kontrasty) a CSS tokeny, hover stavy tlačítek (18 % / 50 %), styl odkazů, zpřesněná pravidla Ano/Ne.</div></div>
       <div class="row"><div class="d">25. 7. 2026</div><div>v1 manuálu založen. Ethel: magenta → azurová #56a8e8. Magenta uvolněna jako rezerva. Přidána neutrální šedá #9c9c9c pro admin/utility.</div></div>
