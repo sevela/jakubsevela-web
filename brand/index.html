@@ -205,13 +205,13 @@
   .rdemo .qbody{ color:var(--text-2); font-size:.98rem; line-height:1.7; flex:1; }
   .rdemo .who{ display:flex; align-items:center; gap:16px; margin-top:24px; padding-top:20px; border-top:1px solid var(--border); }
   .rdemo .qavatar{
-    width:58px; height:58px; border-radius:50%; flex:0 0 58px; object-fit:cover;
+    width:72px; height:72px; border-radius:50%; flex:0 0 72px; object-fit:cover;
     border:1px solid var(--border-2); background:var(--bg-alt);
   }
   .rdemo .qavatar-initials{
-    width:58px; height:58px; border-radius:50%; flex:0 0 58px;
+    width:72px; height:72px; border-radius:50%; flex:0 0 72px;
     display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-mono); font-size:.95rem; color:var(--jakub-l);
+    font-family:var(--font-mono); font-size:1.1rem; color:var(--jakub-l);
     background:rgba(223,166,62,.12); border:1px solid rgba(223,166,62,.35);
   }
   .rdemo .who-info{ min-width:0; }
@@ -594,7 +594,7 @@
     </div>
 
     <div class="comp-row">
-      <div class="comp-label">quote-card — citace v kartě, autor s avatarem v patě · fotka 58 px, fallback iniciály v DM Mono na accent-tintu (onerror, ne ruční varianta) · jméno/pozice/firma vždy tři řádky, dlouhý text se zkrátí (…)</div>
+      <div class="comp-label">quote-card — citace v kartě, autor s avatarem v patě · fotka 72 px, fallback iniciály v DM Mono na accent-tintu (onerror, ne ruční varianta) · jméno/pozice/firma vždy tři řádky, dlouhý text se zkrátí (…)</div>
       <div class="rdemo">
         <figure class="quote-card">
           <div class="quote-mark">&ldquo;</div>
@@ -625,7 +625,7 @@
 
     <div class="comp-row">
       <div class="comp-label">zásady</div>
-      <p style="color:var(--text-2); font-size:15px; max-width:640px;">Jedna mřížka pro každý počet: <b style="color:var(--text)">výchozí 3 sloupce</b> (<span class="mono" style="font-size:13px;">repeat(auto-fit, minmax(290px,1fr))</span>) — auto-fit sám ubere na 2, pak na 1 s klesající šířkou, žádné ruční breakpointy podle počtu karet. Osamocená karta v posledním řádku (typicky při 4 nebo 7 referencích) je přijatelná — řešit dorovnáním počtu na násobek tří, ne výjimkou v mřížce. Pata karty vždy <b style="color:var(--text)">tři řádky</b> — jméno, pozice, firma na vlastním řádku (ne spojené čárkou), každý <span class="mono" style="font-size:13px;">white-space:nowrap</span> + <span class="mono" style="font-size:13px;">text-overflow:ellipsis</span>, takže dlouhý název firmy se zkrátí (…), místo aby zalomil a rozhodil výšku karty vůči sousedům ve stejném řádku mřížky; plný text v <span class="mono" style="font-size:13px;">title</span>. Samostatná pozice bez firmy nesmí znít prázdně — „Jednatel" se doplňuje na <b style="color:var(--text)">„Jednatel společnosti"</b>, běžné tituly jako CEO nebo Sales Manager samy o sobě stačí. Jméno v <span class="mono" style="font-size:13px;">--text</span> (ne v accentu — barvu v kartě nese jen uvozovka a případný avatar), pozice a firma v <span class="mono" style="font-size:13px;">--text-3</span>. Fotka <b style="color:var(--text)">58 px</b> kruhová, <span class="mono" style="font-size:13px;">object-fit:cover</span>; kde fotka není, iniciály — nikdy prázdné kolečko. Citace bez kurzívy. Semanticky <span class="mono" style="font-size:13px;">figure</span> + <span class="mono" style="font-size:13px;">figcaption</span>. Karusel zakázán (hub ho měl v Bootstrap verzi a odešel s ní — grid je čitelnější, bez JS a plně čitelný pro vyhledávače; 3sloupcová mřížka navíc řeší i důvod, proč by se o karuselu dalo uvažovat).</p>
+      <p style="color:var(--text-2); font-size:15px; max-width:640px;">Jedna mřížka pro každý počet: <b style="color:var(--text)">výchozí 3 sloupce</b> (<span class="mono" style="font-size:13px;">repeat(auto-fit, minmax(290px,1fr))</span>) — auto-fit sám ubere na 2, pak na 1 s klesající šířkou, žádné ruční breakpointy podle počtu karet. Osamocená karta v posledním řádku (typicky při 4 nebo 7 referencích) je přijatelná — řešit dorovnáním počtu na násobek tří, ne výjimkou v mřížce. Pata karty vždy <b style="color:var(--text)">tři řádky</b> — jméno, pozice, firma na vlastním řádku (ne spojené čárkou), každý <span class="mono" style="font-size:13px;">white-space:nowrap</span> + <span class="mono" style="font-size:13px;">text-overflow:ellipsis</span>, takže dlouhý název firmy se zkrátí (…), místo aby zalomil a rozhodil výšku karty vůči sousedům ve stejném řádku mřížky; plný text v <span class="mono" style="font-size:13px;">title</span>. Samostatná pozice bez firmy nesmí znít prázdně — „Jednatel" se doplňuje na <b style="color:var(--text)">„Jednatel společnosti"</b>, běžné tituly jako CEO nebo Sales Manager samy o sobě stačí. Jméno v <span class="mono" style="font-size:13px;">--text</span> (ne v accentu — barvu v kartě nese jen uvozovka a případný avatar), pozice a firma v <span class="mono" style="font-size:13px;">--text-3</span>. Fotka <b style="color:var(--text)">72 px</b> kruhová, <span class="mono" style="font-size:13px;">object-fit:cover</span>; kde fotka není, iniciály — nikdy prázdné kolečko. Citace bez kurzívy. Semanticky <span class="mono" style="font-size:13px;">figure</span> + <span class="mono" style="font-size:13px;">figcaption</span>. Karusel zakázán (hub ho měl v Bootstrap verzi a odešel s ní — grid je čitelnější, bez JS a plně čitelný pro vyhledávače; 3sloupcová mřížka navíc řeší i důvod, proč by se o karuselu dalo uvažovat).</p>
     </div>
   </div>
 </section>
