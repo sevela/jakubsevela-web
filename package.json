@@ -1,0 +1,8 @@
+{
+  "name": "jakubsevela-web",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build:fonts": "node scripts/build-fonts.js"
+  }
+}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /brand/
+
+Sitemap: https://jakubsevela.cz/sitemap.xml

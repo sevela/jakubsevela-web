@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grafický manuál — Jakub Ševela / Ethel / Feedco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0c; --bg-alt:#111114; --card:#16161a;
+    --text:#e8e6e3; --text-2:#8a8a8e; --text-3:#5a5a5e;
+    --border:rgba(255,255,255,.08); --border-2:rgba(255,255,255,.14);
+
+    --jakub:#dfa63e;   --jakub-l:#eab55c;
+    --ethel:#56a8e8;   --ethel-l:#74b8ee;
+    --feedco:#9ed455;  --feedco-l:#b3de79;
+    --reserved:#db6bc0; --reserved-l:#e488cd;
+    --neutral:#9c9c9c; --neutral-l:#b5b5b5;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:'DM Sans', sans-serif; font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{ font-family:'Lora', serif; font-weight:600; letter-spacing:-0.01em; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  .wordmark{ font-family:'Space Grotesk', sans-serif; font-weight:500; }
+  .wordmark .dot, .glyph .dot{ font-weight:700; font-size:1.25em; line-height:1; }
+
+  a{ color:inherit; }
+
+  /* layout */
+  .wrap{ max-width:1040px; margin:0 auto; padding:0 32px; }
+  header.hero{
+    padding:96px 0 72px; border-bottom:1px solid var(--border);
+  }
+  .kicker{
+    font-family:'JetBrains Mono', monospace; font-size:12.5px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--text-2); margin-bottom:18px;
+  }
+  header.hero h1{ font-size:42px; line-height:1.15; margin-bottom:14px; max-width:720px;}
+  header.hero p.lede{ color:var(--text-2); font-size:17px; max-width:600px; }
+  .meta-row{ margin-top:28px; display:flex; gap:24px; flex-wrap:wrap; font-size:13.5px; color:var(--text-3); }
+  .meta-row b{ color:var(--text-2); font-weight:500; }
+
+  nav.toc{
+    position:sticky; top:0; z-index:20; background:rgba(10,10,12,.88); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  nav.toc .wrap{ display:flex; gap:24px; overflow-x:auto; padding-top:16px; padding-bottom:16px; }
+  nav.toc a{ font-size:13.5px; color:var(--text-2); text-decoration:none; white-space:nowrap; }
+  nav.toc a:hover{ color:var(--text); }
+
+  section{ padding:64px 0; border-bottom:1px solid var(--border); }
+  section .section-head{ margin-bottom:36px; max-width:680px; }
+  section .num{ font-family:'JetBrains Mono', monospace; color:var(--text-3); font-size:13px; margin-bottom:10px; }
+  section h2{ font-size:28px; margin-bottom:10px; }
+  section .section-head p{ color:var(--text-2); font-size:15px; }
+
+  /* base palette swatches */
+  .swatch-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .swatch{
+    flex:1 1 140px; border-radius:12px; padding:16px; border:1px solid var(--border);
+  }
+  .swatch .sw-label{ font-size:12.5px; color:var(--text-2); margin-top:10px; }
+  .swatch .sw-hex{ font-family:'JetBrains Mono', monospace; font-size:13px; margin-top:2px; cursor:pointer; }
+  .swatch .sw-hex:hover{ text-decoration:underline; }
+  .swblock{ height:56px; border-radius:8px; }
+
+  /* brand color cards */
+  .brand-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(210px,1fr)); gap:16px; }
+  .brand-card{
+    background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px;
+  }
+  .brand-card .accent-block{ height:64px; border-radius:8px; margin-bottom:14px; }
+  .brand-card h3{ font-family:'DM Sans', sans-serif; font-weight:700; font-size:15px; margin-bottom:2px; }
+  .brand-card .role{ font-size:12.5px; color:var(--text-2); margin-bottom:12px; }
+  .brand-card .hexes{ font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--text-2); line-height:1.9; }
+  .brand-card .hexes span{ cursor:pointer; }
+  .brand-card .hexes span:hover{ color:var(--text); text-decoration:underline; }
+  .brand-card .note{ margin-top:14px; font-size:13px; color:var(--text-2); border-top:1px solid var(--border); padding-top:12px; }
+  .tag{
+    display:inline-block; font-size:11px; font-family:'JetBrains Mono',monospace; letter-spacing:.03em;
+    padding:3px 8px; border-radius:5px; margin-bottom:10px;
+  }
+
+  /* typography section */
+  .type-sample{ padding:22px 0; border-top:1px solid var(--border); display:grid; grid-template-columns:140px 1fr; gap:24px; align-items:baseline; }
+  .type-sample:first-of-type{ border-top:none; }
+  .type-sample .type-label{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-3); }
+  .type-sample .type-label small{ display:block; color:var(--text-2); margin-top:4px; font-size:11.5px; }
+
+  /* wordmark section */
+  .word-card{
+    background:var(--card); border:1px solid var(--border); border-radius:12px;
+    padding:36px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:14px;
+  }
+  .word-card .wm{ font-size:32px; }
+  .word-card .wm-note{ font-size:13px; color:var(--text-2); max-width:280px; text-align:right; }
+
+  /* monogram section */
+  .mono-grid{ display:flex; gap:16px; flex-wrap:wrap; }
+  .mono-tile{
+    width:110px; height:110px; border-radius:16px; background:var(--card); border:1px solid var(--border);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+  }
+  .mono-tile .glyph{ font-family:'Space Grotesk', sans-serif; font-weight:500; font-size:26px; }
+  .mono-tile .cap{ font-family:'JetBrains Mono', monospace; font-size:10.5px; color:var(--text-3); }
+
+  /* buttons */
+  .btn-row{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px;}
+  .btn{
+    font-family:'DM Sans', sans-serif; font-weight:500; font-size:14px; border-radius:8px;
+    padding:10px 18px; border:1px solid transparent; cursor:pointer;
+    transition:background .15s, border-color .15s;
+  }
+  .btn-jakub{ background:rgba(223,166,62,.12); border-color:rgba(223,166,62,.35); color:var(--jakub-l); }
+  .btn-jakub:hover{ background:rgba(223,166,62,.18); border-color:rgba(223,166,62,.5); }
+  .btn-ethel{ background:rgba(86,168,232,.12); border-color:rgba(86,168,232,.35); color:var(--ethel-l); }
+  .btn-ethel:hover{ background:rgba(86,168,232,.18); border-color:rgba(86,168,232,.5); }
+  .btn-feedco{ background:rgba(158,212,85,.12); border-color:rgba(158,212,85,.35); color:var(--feedco-l); }
+  .btn-feedco:hover{ background:rgba(158,212,85,.18); border-color:rgba(158,212,85,.5); }
+  .btn-neutral{ background:rgba(156,156,156,.12); border-color:rgba(156,156,156,.35); color:var(--neutral-l); }
+  .btn-neutral:hover{ background:rgba(156,156,156,.18); border-color:rgba(156,156,156,.5); }
+  .btn-secondary{ background:transparent; border-color:var(--border-2); color:var(--text); }
+  .btn-secondary:hover{ border-color:rgba(255,255,255,.25); }
+  .link-demo a{ text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
+  .link-demo a:hover{ text-decoration-thickness:2px; }
+  .comp-row{ margin-bottom:26px; }
+  .comp-row .comp-label{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-3); margin-bottom:10px; }
+
+  /* dos donts */
+  .dd-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .dd-col h4{ font-family:'JetBrains Mono', monospace; font-size:12.5px; letter-spacing:.05em; text-transform:uppercase; margin-bottom:14px; }
+  .dd-col.do h4{ color:var(--feedco-l); }
+  .dd-col.dont h4{ color:var(--reserved-l); }
+  .dd-col ul{ list-style:none; }
+  .dd-col li{ font-size:14.5px; color:var(--text-2); padding:10px 0; border-top:1px solid var(--border); }
+  .dd-col li:first-of-type{ border-top:none; }
+  @media(max-width:640px){ .dd-grid{ grid-template-columns:1fr; } .type-sample{ grid-template-columns:1fr; gap:6px; } }
+
+  footer{ padding:48px 0 80px; }
+  footer .changelog{ font-size:13px; color:var(--text-2); }
+  footer .changelog .row{ display:flex; gap:16px; padding:10px 0; border-top:1px solid var(--border); }
+  footer .changelog .row:first-child{ border-top:none; }
+  footer .changelog .d{ font-family:'JetBrains Mono', monospace; color:var(--text-3); flex:0 0 100px; }
+  .toast{
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--card); border:1px solid var(--border-2); color:var(--text);
+    font-family:'JetBrains Mono', monospace; font-size:13px; padding:10px 16px; border-radius:8px;
+    opacity:0; pointer-events:none; transition:opacity .2s, transform .2s;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Grafický manuál · v1.1</div>
+    <h1>Jeden vizuální systém, čtyři&nbsp;+&nbsp;jedna barva</h1>
+    <p class="lede">Sdílený dark-first systém napříč jakubsevela.cz, ethel.cz a feedco.cz. Značky se odlišují jen akcentní barvou a wordmarkem — typografie, komponenty a tón zůstávají stejné.</p>
+    <div class="meta-row">
+      <span><b>Verze:</b> 1.1</span>
+      <span><b>Aktualizováno:</b> 25. 7. 2026</span>
+      <span><b>Stav:</b> živý dokument — mění se s rozhodnutími</span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <div class="wrap">
+    <a href="#paleta-zaklad">Základ</a>
+    <a href="#paleta-znacky">Paleta značek</a>
+    <a href="#typografie">Typografie</a>
+    <a href="#wordmark">Wordmark</a>
+    <a href="#monogramy">Monogramy</a>
+    <a href="#komponenty">Komponenty</a>
+    <a href="#pristupnost">Přístupnost</a>
+    <a href="#tokeny">Tokeny</a>
+    <a href="#pravidla">Pravidla</a>
+  </div>
+</nav>
+
+<section id="paleta-zaklad">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">01</div>
+      <h2>Základ — dark-first</h2>
+      <p>Všechny tři weby stojí na stejné tmavé bázi. Barva značky se přidává jen v akcentech, nikdy jako plocha na pozadí.</p>
+    </div>
+    <div class="swatch-row">
+      <div class="swatch" style="background:var(--card)">
+        <div class="swblock" style="background:#0a0a0c; border:1px solid var(--border)"></div>
+        <div class="sw-label">pozadí (základní)</div>
+        <div class="sw-hex" onclick="copyHex('#0a0a0c', this)">#0a0a0c</div>
+      </div>
+      <div class="swatch" style="background:var(--card)">
+        <div class="swblock" style="background:#111114; border:1px solid var(--border)"></div>
+        <div class="sw-label">pozadí (sekce)</div>
+        <div class="sw-hex" onclick="copyHex('#111114', this)">#111114</div>
+      </div>
+      <div class="swatch" style="background:var(--card)">
+        <div class="swblock" style="background:#16161a; border:1px solid var(--border)"></div>
+        <div class="sw-label">karty</div>
+        <div class="sw-hex" onclick="copyHex('#16161a', this)">#16161a</div>
+      </div>
+      <div class="swatch" style="background:var(--card)">
+        <div class="swblock" style="background:#e8e6e3"></div>
+        <div class="sw-label">text primární</div>
+        <div class="sw-hex" onclick="copyHex('#e8e6e3', this)">#e8e6e3</div>
+      </div>
+      <div class="swatch" style="background:var(--card)">
+        <div class="swblock" style="background:#8a8a8e"></div>
+        <div class="sw-label">text sekundární</div>
+        <div class="sw-hex" onclick="copyHex('#8a8a8e', this)">#8a8a8e</div>
+      </div>
+      <div class="swatch" style="background:var(--card)">
+        <div class="swblock" style="background:#5a5a5e"></div>
+        <div class="sw-label">text terciární</div>
+        <div class="sw-hex" onclick="copyHex('#5a5a5e', this)">#5a5a5e</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="paleta-znacky">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">02</div>
+      <h2>Paleta značek</h2>
+      <p>Čtyři kvadranty barevného kola + jedna čistě neutrální šedá. Žádné dvě se nepletou ani v malé tečce. <b style="color:var(--text)">Aktualizace 25. 7.:</b> Ethel dostala azurovou, magenta jde do zásoby, přibyla neutrální varianta pro admin rozhraní.</p>
+    </div>
+    <div class="brand-grid">
+
+      <div class="brand-card">
+        <div class="accent-block" style="background:var(--jakub)"></div>
+        <span class="tag" style="background:rgba(223,166,62,.15); color:var(--jakub-l)">jantar · ~40°</span>
+        <h3>jakubsevela.cz</h3>
+        <div class="role">Hub — osobní značka</div>
+        <div class="hexes">
+          accent <span onclick="copyHex('#dfa63e', this)">#dfa63e</span><br>
+          light &nbsp;<span onclick="copyHex('#eab55c', this)">#eab55c</span>
+        </div>
+        <div class="note">Beze změny. Základní tón celého systému.</div>
+      </div>
+
+      <div class="brand-card">
+        <div class="accent-block" style="background:var(--ethel)"></div>
+        <span class="tag" style="background:rgba(86,168,232,.15); color:var(--ethel-l)">azurová · ~210°</span>
+        <h3>ethel.cz</h3>
+        <div class="role">Spoke — AI asistentka</div>
+        <div class="hexes">
+          accent <span onclick="copyHex('#56a8e8', this)">#56a8e8</span><br>
+          light &nbsp;<span onclick="copyHex('#74b8ee', this)">#74b8ee</span>
+        </div>
+        <div class="note">Nově (25. 7.) — dřív rezervovaná, magenta neseděla. Brand manuál Ethel v1.4 (#6a9ec4) i v1.5 koncept (magenta) jsou touto barvou překonané.</div>
+      </div>
+
+      <div class="brand-card">
+        <div class="accent-block" style="background:var(--feedco)"></div>
+        <span class="tag" style="background:rgba(158,212,85,.15); color:var(--feedco-l)">limetková · ~85°</span>
+        <h3>feedco.cz</h3>
+        <div class="role">Spoke — e-commerce konektor</div>
+        <div class="hexes">
+          accent <span onclick="copyHex('#9ed455', this)">#9ed455</span><br>
+          light &nbsp;<span onclick="copyHex('#b3de79', this)">#b3de79</span>
+        </div>
+        <div class="note">Beze změny.</div>
+      </div>
+
+      <div class="brand-card">
+        <div class="accent-block" style="background:var(--reserved)"></div>
+        <span class="tag" style="background:rgba(219,107,192,.15); color:var(--reserved-l)">magenta · ~315°</span>
+        <h3>rezerva</h3>
+        <div class="role">Budoucí produkt</div>
+        <div class="hexes">
+          accent <span onclick="copyHex('#db6bc0', this)">#db6bc0</span><br>
+          light &nbsp;<span onclick="copyHex('#e488cd', this)">#e488cd</span>
+        </div>
+        <div class="note">Nově (25. 7.) — uvolněna z Ethel, čeká na další produkt v portfoliu.</div>
+      </div>
+
+      <div class="brand-card">
+        <div class="accent-block" style="background:var(--neutral)"></div>
+        <span class="tag" style="background:rgba(156,156,156,.15); color:var(--neutral-l)">šedá · 0 % sytosti</span>
+        <h3>neutrální</h3>
+        <div class="role">Admin / utility rozhraní</div>
+        <div class="hexes">
+          accent <span onclick="copyHex('#9c9c9c', this)">#9c9c9c</span><br>
+          light &nbsp;<span onclick="copyHex('#b5b5b5', this)">#b5b5b5</span>
+        </div>
+        <div class="note">Nová (25. 7.). Pro admin panely, nastavení a datové tabulky napříč produkty — kontexty, kde barva značky jen ruší. Wordmark/monogram zůstává, jen tečka přebarvená na neutrál.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="typografie">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">03</div>
+      <h2>Typografie</h2>
+      <p>Čtyři písma, čtyři role. Žádné se nepřekrývá s jiným.</p>
+    </div>
+
+    <div class="type-sample">
+      <div class="type-label">Lora<small>display / nadpisy</small></div>
+      <div style="font-family:'Lora', serif; font-size:30px; font-weight:600;">Pomáhám firmám získat z Heliosu maximum</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-label">DM Sans<small>text / UI</small></div>
+      <div style="font-family:'DM Sans', sans-serif; font-size:16px; color:var(--text-2); max-width:520px;">Specializuji se na vývoj doplňků a rozšíření Heliosu s důrazem na zjednodušení práce, automatizaci a integraci systémů.</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-label">Space Grotesk<small>wordmark / logo — jen zde</small></div>
+      <div class="wordmark" style="font-size:26px;">jakub<span class="dot" style="color:var(--jakub)">.</span>ševela</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-label">JetBrains Mono<small>detaily / kódy / labely</small></div>
+      <div class="mono" style="font-size:14px; color:var(--text-2);">#dfa63e · #56a8e8 · #9ed455</div>
+    </div>
+  </div>
+</section>
+
+<section id="wordmark">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">04</div>
+      <h2>Wordmark</h2>
+      <p>Space Grotesk medium, celé malými písmeny. Tečka: <b style="color:var(--text)">bold (700) a 125 % velikosti</b> — univerzální pravidlo, bez výjimek, pro logo, navigaci i favicon.</p>
+    </div>
+
+    <div class="word-card">
+      <div class="wm wordmark">jakub<span class="dot" style="color:var(--jakub)">.</span>ševela</div>
+      <div class="wm-note">Tečka uvnitř slova — jediný wordmark s tečkou na jiném místě než na konci.</div>
+    </div>
+    <div class="word-card">
+      <div class="wm wordmark">ethel<span class="dot" style="color:var(--ethel)">.</span></div>
+      <div class="wm-note">Tečka na konci, nyní azurová. V aplikaci Ethel jde přepínat barevné profily — na webu a v brandu zůstává azurová pevně.</div>
+    </div>
+    <div class="word-card">
+      <div class="wm wordmark">feedco<span class="dot" style="color:var(--feedco)">.</span></div>
+      <div class="wm-note">Tečka na konci, limetková.</div>
+    </div>
+    <div class="word-card">
+      <div class="wm wordmark">ethel<span class="dot" style="color:var(--neutral)">.</span></div>
+      <div class="wm-note">Neutrální varianta — stejný wordmark, tečka přebarvená. Pro hlavičku admin panelu / interního nástroje.</div>
+    </div>
+  </div>
+</section>
+
+<section id="monogramy">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">05</div>
+      <h2>Monogramy</h2>
+      <p>Pro čtvercové formáty — favicon, avatar, ikona aplikace. Sazba vždy jako jeden textový běh, tečka sedí na účaří jako běžná interpunkce, nikdy skládaná zvlášť.</p>
+    </div>
+    <div class="mono-grid">
+      <div class="mono-tile">
+        <div class="glyph">j<span class="dot" style="color:var(--jakub)">.</span>š</div>
+        <div class="cap">jakub</div>
+      </div>
+      <div class="mono-tile">
+        <div class="glyph">e<span class="dot" style="color:var(--ethel)">.</span></div>
+        <div class="cap">ethel</div>
+      </div>
+      <div class="mono-tile">
+        <div class="glyph">f<span class="dot" style="color:var(--feedco)">.</span></div>
+        <div class="cap">feedco</div>
+      </div>
+      <div class="mono-tile">
+        <div class="glyph">e<span class="dot" style="color:var(--neutral)">.</span></div>
+        <div class="cap">ethel · admin</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="komponenty">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">06</div>
+      <h2>Komponenty</h2>
+      <p>Tónovaný styl — žádné plné barevné plochy. Radius: tlačítka 8px, karty 12px.</p>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-label">primární tlačítko — tónované, 12 % podklad + 35 % border · hover: 18 % + 50 % (vyzkoušej myší)</div>
+      <div class="btn-row">
+        <button class="btn btn-jakub">Domluvit konzultaci</button>
+        <button class="btn btn-ethel">Vyzkoušet Ethel</button>
+        <button class="btn btn-feedco">Spustit Feedco</button>
+        <button class="btn btn-neutral">Uložit nastavení</button>
+      </div>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-label">sekundární tlačítko — transparentní, jednotné napříč brandy</div>
+      <div class="btn-row">
+        <button class="btn btn-secondary">Zjistit víc</button>
+      </div>
+    </div>
+
+    <div class="comp-row link-demo">
+      <div class="comp-label">odkazy v textu — light odstín + podtržení, hover zesílí podtržení</div>
+      <p style="color:var(--text-2); font-size:15px; max-width:560px;">Víc o nasazení najdeš na <a href="#" style="color:var(--jakub-l)">jakubsevela.cz</a>, produkty mají vlastní weby <a href="#" style="color:var(--ethel-l)">ethel.cz</a> a <a href="#" style="color:var(--feedco-l)">feedco.cz</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pristupnost">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">07</div>
+      <h2>Přístupnost</h2>
+      <p>Změřené kontrastní poměry (WCAG) na obou pozadích. Všechny akcenty splňují AA pro běžný text; light odstíny drží AAA i na kartách — proto je text na tónovaných tlačítkách vždy v light odstínu.</p>
+    </div>
+    <div style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:13.5px;">
+        <thead>
+          <tr style="text-align:left; color:var(--text-3); font-family:'JetBrains Mono',monospace; font-size:12px;">
+            <th style="padding:10px 12px; border-bottom:1px solid var(--border-2); font-weight:400;">barva</th>
+            <th style="padding:10px 12px; border-bottom:1px solid var(--border-2); font-weight:400;">na pozadí #0a0a0c</th>
+            <th style="padding:10px 12px; border-bottom:1px solid var(--border-2); font-weight:400;">na kartě #16161a</th>
+            <th style="padding:10px 12px; border-bottom:1px solid var(--border-2); font-weight:400;">hodnocení</th>
+          </tr>
+        </thead>
+        <tbody class="mono" style="color:var(--text-2);">
+          <tr><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--jakub);">jantar #dfa63e / light</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">9,1 / 10,6</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">8,3 / 9,7</td><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--feedco-l);">AAA</td></tr>
+          <tr><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--ethel);">azurová #56a8e8 / light</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">7,7 / 9,3</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">7,0 / 8,4</td><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--feedco-l);">AAA</td></tr>
+          <tr><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--feedco);">limetková #9ed455 / light</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">11,3 / 12,8</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">10,3 / 11,7</td><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--feedco-l);">AAA</td></tr>
+          <tr><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--reserved);">magenta #db6bc0 / light</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">6,5 / 8,2</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">5,9 / 7,5</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">AA / AAA (light)</td></tr>
+          <tr><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--neutral);">neutrální #9c9c9c / light</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">7,2 / 9,6</td><td style="padding:9px 12px; border-bottom:1px solid var(--border);">6,6 / 8,8</td><td style="padding:9px 12px; border-bottom:1px solid var(--border); color:var(--feedco-l);">AAA (light)</td></tr>
+          <tr><td style="padding:9px 12px;">text sekundární #8a8a8e</td><td style="padding:9px 12px;">5,8</td><td style="padding:9px 12px;">5,2</td><td style="padding:9px 12px;">AA — nepoužívat pod 14&nbsp;px</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="tokeny">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">08</div>
+      <h2>CSS tokeny</h2>
+      <p>Kompletní sada proměnných k vložení do každého webu. Per-brand blok přepisuje jen <span class="mono" style="font-size:13px;">--accent</span> proměnné.</p>
+    </div>
+    <pre class="mono" id="tokens-code" style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:24px; font-size:13px; line-height:1.7; color:var(--text-2); overflow-x:auto;">:root{
+  /* base — společné pro všechny weby */
+  --bg:#0a0a0c; --bg-alt:#111114; --card:#16161a;
+  --text:#e8e6e3; --text-2:#8a8a8e; --text-3:#5a5a5e;
+  --border:rgba(255,255,255,.08); --border-2:rgba(255,255,255,.14);
+  --radius-btn:8px; --radius-card:12px;
+}
+
+/* jakubsevela.cz */    --accent:#dfa63e; --accent-l:#eab55c; --accent-rgb:223,166,62;
+/* ethel.cz */          --accent:#56a8e8; --accent-l:#74b8ee; --accent-rgb:86,168,232;
+/* feedco.cz */         --accent:#9ed455; --accent-l:#b3de79; --accent-rgb:158,212,85;
+/* admin / utility */   --accent:#9c9c9c; --accent-l:#b5b5b5; --accent-rgb:156,156,156;
+/* rezerva (magenta) */ --accent:#db6bc0; --accent-l:#e488cd; --accent-rgb:219,107,192;
+
+/* odvozené — vždy z --accent-rgb, nikdy natvrdo */
+.btn-primary{
+  background:rgba(var(--accent-rgb),.12);
+  border:1px solid rgba(var(--accent-rgb),.35);
+  color:var(--accent-l); border-radius:var(--radius-btn);
+}
+.btn-primary:hover{
+  background:rgba(var(--accent-rgb),.18);
+  border-color:rgba(var(--accent-rgb),.5);
+}</pre>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="copyTokens()">Zkopírovat tokeny</button>
+    </div>
+  </div>
+</section>
+
+<section id="pravidla">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">09</div>
+      <h2>Ano / Ne</h2>
+    </div>
+    <div class="dd-grid">
+      <div class="dd-col do">
+        <h4>Ano</h4>
+        <ul>
+          <li>Barva jen v akcentech — tečka, tónované CTA, odkazy, ikony stavu.</li>
+          <li>Text na tónovaných plochách vždy v light odstínu (drží AAA kontrast).</li>
+          <li>Neutrální šedá v adminu, nastavení a datových tabulkách, i uvnitř brandovaného produktu.</li>
+          <li>Wordmark vždy malými písmeny, tečka bold 125 % — bez výjimek.</li>
+        </ul>
+      </div>
+      <div class="dd-col dont">
+        <h4>Ne</h4>
+        <ul>
+          <li>Plná barevná plocha jako pozadí tlačítka nebo sekce.</li>
+          <li>Nestavět identitu Ethel na samotné barvě — azurová je blízko generické „AI modré", identitu nese wordmark, tečka a tón. Barva ji jen doprovází.</li>
+          <li>Magenta v žádném materiálu, dokud nemá vlastní produkt — ať si podrží hodnotu „další barvy v řadě".</li>
+          <li>Skládat písmeno a tečku monogramu jako dva samostatně centrované prvky — vždy jeden textový běh.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="comp-label" style="margin-bottom:14px;">Changelog</div>
+    <div class="changelog">
+      <div class="row"><div class="d">25. 7. 2026</div><div>v1.1 — oprava: tečka wordmarku nyní skutečně 125 % (v1.0 byla jen bold). Přidány sekce Přístupnost (změřené WCAG kontrasty) a CSS tokeny, hover stavy tlačítek (18 % / 50 %), styl odkazů, zpřesněná pravidla Ano/Ne.</div></div>
+      <div class="row"><div class="d">25. 7. 2026</div><div>v1 manuálu založen. Ethel: magenta → azurová #56a8e8. Magenta uvolněna jako rezerva. Přidána neutrální šedá #9c9c9c pro admin/utility.</div></div>
+      <div class="row"><div class="d">24. 7. 2026</div><div>Rozhodnuta vizuální identita — paleta (jantar/magenta/limetka), Space Grotesk wordmark, pravidlo tečky, monogramy, tónované buttony.</div></div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">zkopírováno</div>
+
+<script>
+  function copyTokens(){
+    const code = document.getElementById('tokens-code').textContent;
+    navigator.clipboard && navigator.clipboard.writeText(code);
+    const toast = document.getElementById('toast');
+    toast.textContent = 'tokeny zkopírovány';
+    toast.classList.add('show');
+    clearTimeout(window.__t);
+    window.__t = setTimeout(()=>toast.classList.remove('show'), 1200);
+  }
+  function copyHex(hex, el){
+    navigator.clipboard && navigator.clipboard.writeText(hex);
+    const toast = document.getElementById('toast');
+    toast.textContent = hex + ' zkopírováno';
+    toast.classList.add('show');
+    clearTimeout(window.__t);
+    window.__t = setTimeout(()=>toast.classList.remove('show'), 1200);
+  }
+</script>
+
+</body>
+</html>
