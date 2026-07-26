@@ -141,7 +141,9 @@ header.hero::before {
   background: radial-gradient(circle, rgba(var(--accent-rgb),0.10) 0%, rgba(var(--accent-rgb),0) 68%);
   pointer-events: none;
 }
-header.hero .wrap { position: relative; z-index: 1; }
+/* width:100% je nutné — .wrap je tu flex item, bez toho se smrskne na šířku
+   obsahu, margin:0 auto ho vycentruje a hero přestane lícovat se sekcemi. */
+header.hero .wrap { position: relative; z-index: 1; width: 100%; }
 .hero-label {
   display: inline-block;
   font-family: var(--font-mono);
