@@ -10,7 +10,7 @@ Tenhle soubor čte kdokoli, kdo v repu pracuje — Cowork, Claude Code i člově
 |-------|----------|
 | `/` (`index.html`) | **Živý web.** Nový brand (dark-first, jantar), texty přenesené 1:1 ze staré verze. Tady se pracuje. |
 | `/nahled/` | **Obsahová varianta v9** — jiné texty (hero „Pomáhám firmám získat z Heliosu maximum", sekce Služby, případové studie, FAQ, kontaktní formulář). `noindex` + robots disallow. Rozpracovaný návrh, ne živý web. |
-| `/brand/` | Grafický manuál v1.1, `tokens.css` a `fonts.css` — zdroj pravdy vizuálního systému. |
+| `/brand/` | **Jediná verze grafického manuálu** (v1.2) + `tokens.css` a `fonts.css`. Publikováno na https://jakubsevela.cz/brand/. `feedco-web` a `ethel-web` kopii manuálu nemají, odkazují sem. |
 
 Starý Bootstrap web z roku 2020 byl smazán 26. 7. 2026 (žije v git historii).
 Spolu s ním `css/`, `js/`, `reference.html`, ikonové fonty a balast šablony v `images/`.
@@ -26,7 +26,7 @@ Návštěvník = firma s Heliosem, která má problém. Do tří sekund musí po
 ## Vizuální systém
 
 Tokeny jsou v **`/brand/tokens.css`** — jediný zdroj pravdy pro barvy, typografii a radiusy.
-Nikdy nepiš hexy natvrdo. Kompletní manuál je na `/brand/`.
+Nikdy nepiš hexy natvrdo. Kompletní manuál je na `/brand/` — a jen tam.
 
 - **Dark-first.** Pozadí `--bg` / `--bg-alt`, karty `--card`.
 - **Accent = jantar `#dfa63e`.** Barva jen v akcentech (tečka, CTA, odkazy, ikony stavu),
@@ -51,8 +51,12 @@ Nikdy nepiš hexy natvrdo. Kompletní manuál je na `/brand/`.
 ### Když měníš tokeny
 
 `brand/tokens.css` je shodný ve všech třech repech (`jakubsevela-web`, `feedco-web`,
-`ethel-web`) — mění se jen accent blok. Změnu **propiš do ostatních dvou** a do manuálu
-na `/brand/`. Jinak se weby začnou rozcházet, což je přesně to, čemu má systém zabránit.
+`ethel-web`) — mění se jen accent blok. Změnu **propiš do ostatních dvou**. Jinak se weby
+začnou rozcházet, což je přesně to, čemu má systém zabránit.
+
+**Manuál se edituje jen tady** (`brand/index.html`). Ostatní repa ho nemají, odkazují na
+https://jakubsevela.cz/brand/. Než ho změníš, promysli, jestli změna platí pro všechny tři weby — je to
+společný dokument, ne dokument hubu.
 
 ## Fonty
 

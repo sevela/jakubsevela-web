@@ -15,7 +15,7 @@ nahled/index.html     obsahová varianta v9 — jiné texty, noindex
 brand/
   tokens.css          zdroj pravdy pro barvy, typografii, radiusy
   fonts.css           @font-face deklarace, generované
-  index.html          grafický manuál v1.1
+  index.html          grafický manuál v1.2 — JEDINÁ verze, ostatní repa sem odkazují
 scripts/
   build-fonts.js      generuje fonts/brand/ + brand/fonts.css z npm @fontsource
   generate-og.js      generuje og-image.png ze scripts/og-image.html
@@ -50,5 +50,6 @@ Spouštět jen když přibude nový řez písma. Detaily v `CLAUDE.md`.
 
 ## Grafický manuál
 
-`/brand/` — živý dokument. Je shodný napříč všemi třemi weby; při změně palety nebo
-komponent ho aktualizuj a propiš `tokens.css` do `feedco-web` a `ethel-web`.
+`/brand/` — živý dokument a **jediná verze**. `feedco-web` ani `ethel-web` kopii nemají,
+odkazují na https://jakubsevela.cz/brand/. Při změně palety nebo komponent aktualizuj manuál tady
+a propiš `tokens.css` do zbylých dvou rep.
