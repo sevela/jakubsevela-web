@@ -5,21 +5,25 @@ produktové weby [ethel.cz](https://ethel.cz) a [feedco.cz](https://feedco.cz) s
 
 Statický web bez buildu. Nasazuje GitHub Pages z branch `main`, root.
 
-## Struktura
+V repu jsou dva weby vedle sebe:
 
 ```
-index.html            celá stránka — HTML, inline CSS, inline JS
+index.html            STARÝ web, přenesený 1:1 z původního hostingu (bootstrap šablona)
+css/ js/ images/      jeho assety
+reference.html        orphan stránka starého webu, není odnikud odkazovaná
+fonts/                ikonové fonty starého webu (FontAwesome, Themify, Linearicons)
+
+nahled/index.html     REDESIGN (master v9) v novém brandu — noindex, sem jde veškerá práce
 brand/
   tokens.css          zdroj pravdy pro barvy, typografii, radiusy
-  index.html          grafický manuál (v1.1) — paleta, wordmark, komponenty, kontrasty
-images/reference/     fotky u referencí
+  index.html          grafický manuál v1.1
 scripts/
   build-fonts.js      self-hosting Google Fonts do /fonts/
 CNAME                 jakubsevela.cz
 .nojekyll             vypíná Jekyll — bez toho Pages ignoruje soubory s podtržítkem
-robots.txt
+robots.txt            zakazuje /brand/ a /nahled/
 sitemap.xml
-CLAUDE.md             pravidla pro práci v repu (brand, texty, co nedělat)
+CLAUDE.md             pravidla pro práci v repu — přečti dřív než začneš
 ```
 
 ## Lokální náhled
@@ -30,6 +34,7 @@ python3 -m http.server 8000
 ```
 
 Absolutní cesty (`/brand/tokens.css`) fungují jen přes server, ne přes `file://`.
+Redesign je na `http://localhost:8000/nahled/`.
 
 ## Nasazení
 
