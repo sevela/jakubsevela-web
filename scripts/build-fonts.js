@@ -1,69 +1,91 @@
-// Self-host Google Fonts: download latin + latin-ext woff2 files,
-// rewrite paths to /fonts/, emit a self-contained CSS to scripts/_fonts.css.
+// Self-host brand fonty z npm balíčků @fontsource.
 //
-// Run: node scripts/build-fonts.js
+// Proč z npm a ne z fonts.googleapis.com: Google Fonts CDN je v EU sporný
+// (přenos IP adres návštěvníků do USA) a v sandboxu bývá blokovaný.
+// @fontsource publikuje ty samé soubory z Google Fonts repozitáře.
+//
+// Vstup:  node_modules/@fontsource/*
+// Výstup: fonts/brand/*.woff2 + brand/fonts.css
+//
+// Spuštění:
+//   npm install
+//   node scripts/build-fonts.js
 
-import fs from 'node:fs/promises';
+import fs from 'node:fs';
 import path from 'node:path';
-import https from 'node:https';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
-const FONTS_DIR = path.join(ROOT, 'fonts');
-const OUT_CSS = path.join(__dirname, '_fonts.css');
+const SRC = path.join(ROOT, 'node_modules', '@fontsource');
+const OUT_FONTS = path.join(ROOT, 'fonts', 'brand');
+const OUT_CSS = path.join(ROOT, 'brand', 'fonts.css');
 
-const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
-const QUERY = 'family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600;700&display=swap';
+// Čeština potřebuje latin-ext (ě š č ř ž ů ď ť ň). Bez unicode-range by
+// latin blok přebil latin-ext a diakritika by spadla na fallback font.
+const SUBSETS = {
+  latin:
+    'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,' +
+    'U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,' +
+    'U+2212,U+2215,U+FEFF,U+FFFD',
+  'latin-ext':
+    'U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,' +
+    'U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,' +
+    'U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF',
+};
 
-function get(url, headers = {}) {
-  return new Promise((resolve, reject) => {
-    https.get(url, { headers: { 'User-Agent': UA, ...headers } }, (res) => {
-      if (res.statusCode === 301 || res.statusCode === 302) {
-        return resolve(get(res.headers.location, headers));
+// Jen řezy, které web reálně používá. Přidávat jen s důvodem — každý řez
+// je soubor navíc v repu.
+const FACES = [
+  { pkg: 'lora', family: 'Lora', weights: [400, 500, 600], italics: [500] },
+  { pkg: 'dm-sans', family: 'DM Sans', weights: [400, 500, 700], italics: [400] },
+  { pkg: 'dm-mono', family: 'DM Mono', weights: [400, 500], italics: [] },
+  { pkg: 'space-grotesk', family: 'Space Grotesk', weights: [500, 700], italics: [] },
+];
+
+fs.rmSync(OUT_FONTS, { recursive: true, force: true });
+fs.mkdirSync(OUT_FONTS, { recursive: true });
+
+const blocks = [];
+let copied = 0;
+
+for (const face of FACES) {
+  const variants = [
+    ...face.weights.map((w) => ({ weight: w, style: 'normal' })),
+    ...face.italics.map((w) => ({ weight: w, style: 'italic' })),
+  ];
+
+  for (const v of variants) {
+    for (const [subset, range] of Object.entries(SUBSETS)) {
+      const file = `${face.pkg}-${subset}-${v.weight}-${v.style}.woff2`;
+      const src = path.join(SRC, face.pkg, 'files', file);
+      if (!fs.existsSync(src)) {
+        console.warn(`chybí: ${file}`);
+        continue;
       }
-      const chunks = [];
-      res.on('data', (c) => chunks.push(c));
-      res.on('end', () => resolve(Buffer.concat(chunks)));
-      res.on('error', reject);
-    }).on('error', reject);
-  });
+      fs.copyFileSync(src, path.join(OUT_FONTS, file));
+      copied++;
+      blocks.push(
+        `@font-face {\n` +
+          `  font-family: '${face.family}';\n` +
+          `  font-style: ${v.style};\n` +
+          `  font-weight: ${v.weight};\n` +
+          `  font-display: swap;\n` +
+          `  src: url('/fonts/brand/${file}') format('woff2');\n` +
+          `  unicode-range: ${range};\n` +
+          `}`
+      );
+    }
+  }
 }
 
-const css = (await get(`https://fonts.googleapis.com/css2?${QUERY}`)).toString('utf8');
+const header =
+  `/* Vygenerováno scripts/build-fonts.js — needitovat ručně.\n` +
+  `   Zdroj: npm @fontsource (soubory z Google Fonts).\n` +
+  `   Přegenerovat: npm install && node scripts/build-fonts.js */\n\n`;
 
-await fs.mkdir(FONTS_DIR, { recursive: true });
+fs.mkdirSync(path.dirname(OUT_CSS), { recursive: true });
+fs.writeFileSync(OUT_CSS, header + blocks.join('\n\n') + '\n', 'utf8');
 
-// CSS is split into blocks separated by `/* subset */` comments.
-const blocks = css.split(/\/\*\s*([a-z\-]+)\s*\*\/\s*/i).filter(Boolean);
-
-const KEEP = new Set(['latin', 'latin-ext']);
-const out = [];
-
-for (let i = 0; i < blocks.length; i += 2) {
-  const subset = blocks[i].trim();
-  const block = blocks[i + 1] || '';
-  if (!KEEP.has(subset)) continue;
-
-  const fam = block.match(/font-family:\s*'([^']+)'/)?.[1];
-  const w = block.match(/font-weight:\s*([0-9]+)/)?.[1];
-  const url = block.match(/src:\s*url\((https:[^)]+)\)/)?.[1];
-  if (!fam || !w || !url) continue;
-
-  const slug = fam.toLowerCase().replace(/\s+/g, '-');
-  const filename = `${slug}-${w}-${subset}.woff2`;
-  const dest = path.join(FONTS_DIR, filename);
-
-  const buf = await get(url);
-  await fs.writeFile(dest, buf);
-  console.log('downloaded', filename, '(' + (buf.length / 1024).toFixed(1) + ' KB)');
-
-  // rewrite block: replace remote url with local /fonts/ path
-  const rewritten = block.replace(/src:\s*url\([^)]+\)/, `src: url('/fonts/${filename}')`);
-  out.push(`/* ${fam} ${w} ${subset} */\n${rewritten.trim()}`);
-}
-
-const finalCss = out.join('\n\n') + '\n';
-await fs.writeFile(OUT_CSS, finalCss);
-console.log('wrote', OUT_CSS, '(' + finalCss.length, 'bytes)');
-console.log('total fonts:', out.length);
+console.log(`zkopírováno ${copied} souborů do fonts/brand/`);
+console.log(`zapsáno ${path.relative(ROOT, OUT_CSS)} (${blocks.length} @font-face bloků)`);

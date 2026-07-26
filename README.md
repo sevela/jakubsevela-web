@@ -5,20 +5,18 @@ produktové weby [ethel.cz](https://ethel.cz) a [feedco.cz](https://feedco.cz) s
 
 Statický web bez buildu. Nasazuje GitHub Pages z branch `main`, root.
 
-V repu jsou dva weby vedle sebe:
-
 ```
-index.html            STARÝ web, přenesený 1:1 z původního hostingu (bootstrap šablona)
-css/ js/ images/      jeho assety
-reference.html        orphan stránka starého webu, není odnikud odkazovaná
-fonts/                ikonové fonty starého webu (FontAwesome, Themify, Linearicons)
+index.html            živý web — nový brand, texty přenesené 1:1 ze staré verze
+images/               fotky referencí, loga klientů, favicon
+fonts/brand/          self-hostované woff2 (Lora, DM Sans, DM Mono, Space Grotesk)
 
-nahled/index.html     REDESIGN (master v9) v novém brandu — noindex, sem jde veškerá práce
+nahled/index.html     obsahová varianta v9 — jiné texty, noindex
 brand/
   tokens.css          zdroj pravdy pro barvy, typografii, radiusy
+  fonts.css           @font-face deklarace, generované
   index.html          grafický manuál v1.1
 scripts/
-  build-fonts.js      self-hosting Google Fonts do /fonts/
+  build-fonts.js      generuje fonts/brand/ + brand/fonts.css z npm @fontsource
 CNAME                 jakubsevela.cz
 .nojekyll             vypíná Jekyll — bez toho Pages ignoruje soubory s podtržítkem
 robots.txt            zakazuje /brand/ a /nahled/
@@ -34,20 +32,19 @@ python3 -m http.server 8000
 ```
 
 Absolutní cesty (`/brand/tokens.css`) fungují jen přes server, ne přes `file://`.
-Redesign je na `http://localhost:8000/nahled/`.
 
 ## Nasazení
 
 Push do `main`. Pages vystaví do minuty.
 
-## Self-hosting fontů
+## Fonty
 
 ```bash
+npm install
 node scripts/build-fonts.js
 ```
 
-Stáhne latin + latin-ext woff2 do `/fonts/` a vygeneruje `scripts/_fonts.css`.
-Obsah pak patří do `<style>` v `index.html` místo `<link>` na Google Fonts.
+Spouštět jen když přibude nový řez písma. Detaily v `CLAUDE.md`.
 
 ## Grafický manuál
 
