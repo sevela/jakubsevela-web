@@ -7,6 +7,7 @@ Statický web bez buildu. Nasazuje GitHub Pages z branch `main`, root.
 
 ```
 index.html            živý web — nový brand, texty přenesené 1:1 ze staré verze
+og-image.png          náhledový obrázek pro sdílení, generovaný
 images/               fotky referencí, loga klientů, favicon
 fonts/brand/          self-hostované woff2 (Lora, DM Sans, DM Mono, Space Grotesk)
 
@@ -17,6 +18,7 @@ brand/
   index.html          grafický manuál v1.1
 scripts/
   build-fonts.js      generuje fonts/brand/ + brand/fonts.css z npm @fontsource
+  generate-og.js      generuje og-image.png ze scripts/og-image.html
 CNAME                 jakubsevela.cz
 .nojekyll             vypíná Jekyll — bez toho Pages ignoruje soubory s podtržítkem
 robots.txt            zakazuje /brand/ a /nahled/

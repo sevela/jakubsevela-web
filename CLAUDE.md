@@ -67,6 +67,22 @@ bez `unicode-range` by latin blok přebil latin-ext a diakritika spadla na fallb
 Řezy, které se generují, jsou v konstantě `FACES` v `scripts/build-fonts.js`.
 Přidávat jen s důvodem, každý řez je soubor navíc v repu.
 
+## OG image
+
+`og-image.png` (1200×630) se generuje ze šablony `scripts/og-image.html`:
+
+```bash
+npm install
+node scripts/generate-og.js
+```
+
+Šablona je normální HTML v brandových tokenech — edituje se ona, ne PNG.
+Tahá `/brand/fonts.css` absolutními cestami, takže ji nejde otevřít přes `file://`;
+generátor si proto sám zvedne dočasný server nad rootem repa. Chrome se hledá
+v `CHROME_PATH`, jinak na obvyklých místech (Linux i Windows).
+
+Po přegenerování soubor commitni — Pages ho servíruje staticky.
+
 ## Texty
 
 Česky, web je vykaný. Konkrétnost před přísliby: jména klientů, čísla, měřitelné výsledky.
@@ -85,12 +101,8 @@ Nadpis H1 je o návštěvníkovi, ne o byznys modelu. Jména produktů do H1 nep
 
 ## Známý technický dluh
 
-- **`og-image.png` neexistuje**, `index.html` proto zatím nemá `og:image`.
-  `ethel-web` má generátor v `scripts/generate-og.js` — přenést.
 - **Na živém webu není kontaktní formulář**, jen e-mail, telefon a LinkedIn.
-  Formulář je připravený v `/nahled/` (Formspree `xkgnqpnz`).
-- **Copyright ve footeru je „2016 - 2024"** — přeneseno z původního webu záměrně 1:1.
-  Až se bude text měnit, opravit na aktuální rok.
+  Formulář je připravený v `/nahled/` (Formspree `xkgnqpnz`) — čeká na doplnění.
 - **`/nahled/` má portrét v hero jako base64 data URI** (~215 KB). Vytáhnout do souboru.
 - **`/nahled/` tahá fonty z Google Fonts CDN.** Přepnout na `/brand/fonts.css` jako root.
 - `programatorhelios.cz` je volný konec z roku 2020 — žije na jiné IP, k úklidu.
