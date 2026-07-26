@@ -10,7 +10,7 @@ Tenhle soubor čte kdokoli, kdo v repu pracuje — Cowork, Claude Code i člově
 |-------|----------|
 | `/` (`index.html`) | **Živý web.** Nový brand (dark-first, jantar), texty přenesené 1:1 ze staré verze. Tady se pracuje. |
 | `/nahled/` | **Obsahová varianta v9** — jiné texty (hero „Pomáhám firmám získat z Heliosu maximum", sekce Služby, případové studie, FAQ, kontaktní formulář). `noindex` + robots disallow. Rozpracovaný návrh, ne živý web. |
-| `/brand/` | **Jediná verze grafického manuálu** (v1.2) + `tokens.css` a `fonts.css`. Publikováno na https://jakubsevela.cz/brand/. `feedco-web` a `ethel-web` kopii manuálu nemají, odkazují sem. |
+| `/brand/` | **Jediná verze grafického manuálu** (v1.6) + `tokens.css` a `fonts.css`. Publikováno na https://jakubsevela.cz/brand/. `feedco-web` a `ethel-web` kopii manuálu nemají, odkazují sem. |
 
 Starý Bootstrap web z roku 2020 byl smazán 26. 7. 2026 (žije v git historii).
 Spolu s ním `css/`, `js/`, `reference.html`, ikonové fonty a balast šablony v `images/`.
