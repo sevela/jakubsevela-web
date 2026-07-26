@@ -1,6 +1,6 @@
 # jakubsevela.cz
 
-Osobní web Jakuba Ševely — specialista na Helios iNuvio. Hub v architektuře hub-and-spoke;
+Osobní web Jakuba Ševely — specialista na Helios Inuvio. Hub v architektuře hub-and-spoke;
 produktové weby [ethel.cz](https://ethel.cz) a [feedco.cz](https://feedco.cz) stojí samostatně.
 
 Statický web bez buildu. Nasazuje GitHub Pages z branch `main`, root.
