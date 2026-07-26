@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Grafický manuál — Jakub Ševela / Ethel / Feedco</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/brand/fonts.css">
 <style>
   :root{
     --bg:#0a0a0c; --bg-alt:#111114; --card:#16161a;
@@ -18,6 +16,8 @@
     --feedco:#9ed455;  --feedco-l:#b3de79;
     --reserved:#db6bc0; --reserved-l:#e488cd;
     --neutral:#9c9c9c; --neutral-l:#b5b5b5;
+
+    --font-mono:'DM Mono', ui-monospace, monospace;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -26,8 +26,9 @@
     font-family:'DM Sans', sans-serif; font-size:16px; line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3{ font-family:'Lora', serif; font-weight:600; letter-spacing:-0.01em; }
-  .mono{ font-family:'JetBrains Mono', monospace; }
+  h1,h2{ font-family:'Lora', serif; font-weight:400; }
+  h3{ font-family:'Lora', serif; font-weight:500; letter-spacing:-0.005em; }
+  .mono{ font-family:var(--font-mono); }
   .wordmark{ font-family:'Space Grotesk', sans-serif; font-weight:500; }
   .wordmark .dot, .glyph .dot{ font-weight:700; font-size:1.25em; line-height:1; }
 
@@ -39,7 +40,7 @@
     padding:96px 0 72px; border-bottom:1px solid var(--border);
   }
   .kicker{
-    font-family:'JetBrains Mono', monospace; font-size:12.5px; letter-spacing:.08em;
+    font-family:var(--font-mono); font-size:12.5px; letter-spacing:.08em;
     text-transform:uppercase; color:var(--text-2); margin-bottom:18px;
   }
   header.hero h1{ font-size:42px; line-height:1.15; margin-bottom:14px; max-width:720px;}
@@ -57,7 +58,7 @@
 
   section{ padding:64px 0; border-bottom:1px solid var(--border); }
   section .section-head{ margin-bottom:36px; max-width:680px; }
-  section .num{ font-family:'JetBrains Mono', monospace; color:var(--text-3); font-size:13px; margin-bottom:10px; }
+  section .num{ font-family:var(--font-mono); color:var(--text-3); font-size:13px; margin-bottom:10px; }
   section h2{ font-size:28px; margin-bottom:10px; }
   section .section-head p{ color:var(--text-2); font-size:15px; }
 
@@ -67,7 +68,7 @@
     flex:1 1 140px; border-radius:12px; padding:16px; border:1px solid var(--border);
   }
   .swatch .sw-label{ font-size:12.5px; color:var(--text-2); margin-top:10px; }
-  .swatch .sw-hex{ font-family:'JetBrains Mono', monospace; font-size:13px; margin-top:2px; cursor:pointer; }
+  .swatch .sw-hex{ font-family:var(--font-mono); font-size:13px; margin-top:2px; cursor:pointer; }
   .swatch .sw-hex:hover{ text-decoration:underline; }
   .swblock{ height:56px; border-radius:8px; }
 
@@ -79,19 +80,19 @@
   .brand-card .accent-block{ height:64px; border-radius:8px; margin-bottom:14px; }
   .brand-card h3{ font-family:'DM Sans', sans-serif; font-weight:700; font-size:15px; margin-bottom:2px; }
   .brand-card .role{ font-size:12.5px; color:var(--text-2); margin-bottom:12px; }
-  .brand-card .hexes{ font-family:'JetBrains Mono', monospace; font-size:12.5px; color:var(--text-2); line-height:1.9; }
+  .brand-card .hexes{ font-family:var(--font-mono); font-size:12.5px; color:var(--text-2); line-height:1.9; }
   .brand-card .hexes span{ cursor:pointer; }
   .brand-card .hexes span:hover{ color:var(--text); text-decoration:underline; }
   .brand-card .note{ margin-top:14px; font-size:13px; color:var(--text-2); border-top:1px solid var(--border); padding-top:12px; }
   .tag{
-    display:inline-block; font-size:11px; font-family:'JetBrains Mono',monospace; letter-spacing:.03em;
+    display:inline-block; font-size:11px; font-family:var(--font-mono); letter-spacing:.03em;
     padding:3px 8px; border-radius:5px; margin-bottom:10px;
   }
 
   /* typography section */
   .type-sample{ padding:22px 0; border-top:1px solid var(--border); display:grid; grid-template-columns:140px 1fr; gap:24px; align-items:baseline; }
   .type-sample:first-of-type{ border-top:none; }
-  .type-sample .type-label{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-3); }
+  .type-sample .type-label{ font-family:var(--font-mono); font-size:12px; color:var(--text-3); }
   .type-sample .type-label small{ display:block; color:var(--text-2); margin-top:4px; font-size:11.5px; }
 
   /* wordmark section */
@@ -109,7 +110,7 @@
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
   }
   .mono-tile .glyph{ font-family:'Space Grotesk', sans-serif; font-weight:500; font-size:26px; }
-  .mono-tile .cap{ font-family:'JetBrains Mono', monospace; font-size:10.5px; color:var(--text-3); }
+  .mono-tile .cap{ font-family:var(--font-mono); font-size:10.5px; color:var(--text-3); }
 
   /* buttons */
   .btn-row{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; margin-top:14px;}
@@ -131,11 +132,11 @@
   .link-demo a{ text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; }
   .link-demo a:hover{ text-decoration-thickness:2px; }
   .comp-row{ margin-bottom:26px; }
-  .comp-row .comp-label{ font-family:'JetBrains Mono', monospace; font-size:12px; color:var(--text-3); margin-bottom:10px; }
+  .comp-row .comp-label{ font-family:var(--font-mono); font-size:12px; color:var(--text-3); margin-bottom:10px; }
 
   /* dos donts */
   .dd-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-  .dd-col h4{ font-family:'JetBrains Mono', monospace; font-size:12.5px; letter-spacing:.05em; text-transform:uppercase; margin-bottom:14px; }
+  .dd-col h4{ font-family:var(--font-mono); font-size:12.5px; letter-spacing:.05em; text-transform:uppercase; margin-bottom:14px; }
   .dd-col.do h4{ color:var(--feedco-l); }
   .dd-col.dont h4{ color:var(--reserved-l); }
   .dd-col ul{ list-style:none; }
@@ -147,11 +148,11 @@
   footer .changelog{ font-size:13px; color:var(--text-2); }
   footer .changelog .row{ display:flex; gap:16px; padding:10px 0; border-top:1px solid var(--border); }
   footer .changelog .row:first-child{ border-top:none; }
-  footer .changelog .d{ font-family:'JetBrains Mono', monospace; color:var(--text-3); flex:0 0 100px; }
+  footer .changelog .d{ font-family:var(--font-mono); color:var(--text-3); flex:0 0 100px; }
   .toast{
     position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
     background:var(--card); border:1px solid var(--border-2); color:var(--text);
-    font-family:'JetBrains Mono', monospace; font-size:13px; padding:10px 16px; border-radius:8px;
+    font-family:var(--font-mono); font-size:13px; padding:10px 16px; border-radius:8px;
     opacity:0; pointer-events:none; transition:opacity .2s, transform .2s;
   }
   .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
@@ -161,12 +162,12 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="kicker">Grafický manuál · v1.1</div>
+    <div class="kicker">Grafický manuál · v1.2</div>
     <h1>Jeden vizuální systém, čtyři&nbsp;+&nbsp;jedna barva</h1>
     <p class="lede">Sdílený dark-first systém napříč jakubsevela.cz, ethel.cz a feedco.cz. Značky se odlišují jen akcentní barvou a wordmarkem — typografie, komponenty a tón zůstávají stejné.</p>
     <div class="meta-row">
-      <span><b>Verze:</b> 1.1</span>
-      <span><b>Aktualizováno:</b> 25. 7. 2026</span>
+      <span><b>Verze:</b> 1.2</span>
+      <span><b>Aktualizováno:</b> 26. 7. 2026</span>
       <span><b>Stav:</b> živý dokument — mění se s rozhodnutími</span>
     </div>
   </div>
@@ -180,6 +181,7 @@
     <a href="#wordmark">Wordmark</a>
     <a href="#monogramy">Monogramy</a>
     <a href="#komponenty">Komponenty</a>
+    <a href="#layout">Layout a fonty</a>
     <a href="#pristupnost">Přístupnost</a>
     <a href="#tokeny">Tokeny</a>
     <a href="#pravidla">Pravidla</a>
@@ -310,8 +312,11 @@
     </div>
 
     <div class="type-sample">
-      <div class="type-label">Lora<small>display / nadpisy</small></div>
-      <div style="font-family:'Lora', serif; font-size:30px; font-weight:600;">Pomáhám firmám získat z Heliosu maximum</div>
+      <div class="type-label">Lora<small>display / nadpisy<br>h1–h2: 400 · h3–h4: 500</small></div>
+      <div>
+        <div style="font-family:'Lora', serif; font-size:30px; font-weight:400;">Pomáhám firmám získat z Heliosu <em style="color:var(--jakub-l)">maximum</em></div>
+        <div style="font-family:'Lora', serif; font-size:17px; font-weight:500; margin-top:10px; color:var(--text-2);">E-shop konektor Helios — Upgates / Shoptet</div>
+      </div>
     </div>
     <div class="type-sample">
       <div class="type-label">DM Sans<small>text / UI</small></div>
@@ -322,7 +327,7 @@
       <div class="wordmark" style="font-size:26px;">jakub<span class="dot" style="color:var(--jakub)">.</span>ševela</div>
     </div>
     <div class="type-sample">
-      <div class="type-label">JetBrains Mono<small>detaily / kódy / labely</small></div>
+      <div class="type-label">DM Mono<small>detaily / kódy / labely</small></div>
       <div class="mono" style="font-size:14px; color:var(--text-2);">#dfa63e · #56a8e8 · #9ed455</div>
     </div>
   </div>
@@ -415,17 +420,49 @@
   </div>
 </section>
 
-<section id="pristupnost">
+<section id="layout">
   <div class="wrap">
     <div class="section-head">
       <div class="num">07</div>
+      <h2>Layout a fonty</h2>
+      <p>Doplněno 26. 7. při přepisu jakubsevela.cz. Platí pro všechny tři weby — bez toho se rozejdou v šířce a v ostrosti nadpisů, i když paletu i písma budou mít stejné.</p>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-label">šířka obsahu</div>
+      <p style="color:var(--text-2); font-size:15px; max-width:640px;">Obsah drží kontejner <span class="mono" style="font-size:13px;">--content-max: 1200px</span>. Řádek textu přes celou šířku 2560px monitoru se nedá číst — oko ztrácí návaznost mezi koncem řádku a začátkem dalšího.</p>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-label">sekce od kraje ke kraji</div>
+      <p style="color:var(--text-2); font-size:15px; max-width:640px;">Výjimka, ne pravidlo. Zatím jen hero s fotkou — obrázek uvnitř kontejneru vypadá nalepený do stránky. <b style="color:var(--text)">Text uvnitř takové sekce ale drží stejný kontejner jako zbytek webu</b>, aby levá hrana lícovala.</p>
+      <p style="color:var(--text-2); font-size:15px; max-width:640px; margin-top:10px;">Levou hranu hero fotky vázat na konec textového sloupce, ne na procento viewportu: <span class="mono" style="font-size:13px;">left: max(46%, calc(50% - 60px))</span>. S pevným procentem fotka na širokém monitoru podjede nadpis.</p>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-label">řezy nadpisů — čím větší, tím lehčí</div>
+      <p style="color:var(--text-2); font-size:15px; max-width:640px;">h1 a h2 v Lora <b style="color:var(--text)">400</b>, h3 a h4 v <b style="color:var(--text)">500</b>. Velký nadpis v 600 konkuruje fotce i accentní barvě; malý by ve 400 neměl důraz. Vždy přes tokeny <span class="mono" style="font-size:13px;">--weight-display</span> a <span class="mono" style="font-size:13px;">--weight-heading</span>, nikdy natvrdo.</p>
+    </div>
+
+    <div class="comp-row">
+      <div class="comp-label">fonty — self-hosting, ne Google CDN</div>
+      <p style="color:var(--text-2); font-size:15px; max-width:640px;">Woff2 soubory z npm balíčků <span class="mono" style="font-size:13px;">@fontsource/*</span> v repu, ne <span class="mono" style="font-size:13px;">fonts.googleapis.com</span>. Volání na Google CDN posílá IP adresy návštěvníků do USA, což je v EU sporné.</p>
+      <p style="color:var(--text-2); font-size:15px; max-width:640px; margin-top:10px;"><b style="color:var(--text)">U češtiny je <span class="mono" style="font-size:13px;">unicode-range</span> povinný.</b> Bez něj latin blok přebije latin-ext a všechna diakritika (ě š č ř ž ů ď ť ň) spadne na fallback font. Vypadá to jako „font se nenačetl", přitom se načetl špatný subset. <span class="mono" style="font-size:13px;">@fontsource</span> unicode-range v CSS nedodává, musí se dogenerovat.</p>
+    </div>
+  </div>
+</section>
+
+<section id="pristupnost">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="num">08</div>
       <h2>Přístupnost</h2>
       <p>Změřené kontrastní poměry (WCAG) na obou pozadích. Všechny akcenty splňují AA pro běžný text; light odstíny drží AAA i na kartách — proto je text na tónovaných tlačítkách vždy v light odstínu.</p>
     </div>
     <div style="overflow-x:auto;">
       <table style="width:100%; border-collapse:collapse; font-size:13.5px;">
         <thead>
-          <tr style="text-align:left; color:var(--text-3); font-family:'JetBrains Mono',monospace; font-size:12px;">
+          <tr style="text-align:left; color:var(--text-3); font-family:var(--font-mono); font-size:12px;">
             <th style="padding:10px 12px; border-bottom:1px solid var(--border-2); font-weight:400;">barva</th>
             <th style="padding:10px 12px; border-bottom:1px solid var(--border-2); font-weight:400;">na pozadí #0a0a0c</th>
             <th style="padding:10px 12px; border-bottom:1px solid var(--border-2); font-weight:400;">na kartě #16161a</th>
@@ -448,7 +485,7 @@
 <section id="tokeny">
   <div class="wrap">
     <div class="section-head">
-      <div class="num">08</div>
+      <div class="num">09</div>
       <h2>CSS tokeny</h2>
       <p>Kompletní sada proměnných k vložení do každého webu. Per-brand blok přepisuje jen <span class="mono" style="font-size:13px;">--accent</span> proměnné.</p>
     </div>
@@ -458,6 +495,17 @@
   --text:#e8e6e3; --text-2:#8a8a8e; --text-3:#5a5a5e;
   --border:rgba(255,255,255,.08); --border-2:rgba(255,255,255,.14);
   --radius-btn:8px; --radius-card:12px;
+
+  /* typografie */
+  --font-display:'Lora',Georgia,serif;
+  --font-body:'DM Sans',system-ui,sans-serif;
+  --font-mono:'DM Mono',ui-monospace,monospace;
+  --font-wordmark:'Space Grotesk',sans-serif;  /* JEN wordmark a monogram */
+  --weight-display:400;   /* h1, h2 */
+  --weight-heading:500;   /* h3, h4 */
+
+  /* layout */
+  --content-max:1200px;   /* hero je výjimka — od kraje ke kraji */
 }
 
 /* jakubsevela.cz */    --accent:#dfa63e; --accent-l:#eab55c; --accent-rgb:223,166,62;
@@ -485,7 +533,7 @@
 <section id="pravidla">
   <div class="wrap">
     <div class="section-head">
-      <div class="num">09</div>
+      <div class="num">10</div>
       <h2>Ano / Ne</h2>
     </div>
     <div class="dd-grid">
@@ -496,6 +544,8 @@
           <li>Text na tónovaných plochách vždy v light odstínu (drží AAA kontrast).</li>
           <li>Neutrální šedá v adminu, nastavení a datových tabulkách, i uvnitř brandovaného produktu.</li>
           <li>Wordmark vždy malými písmeny, tečka bold 125 % — bez výjimek.</li>
+          <li>Nadpisy přes tokeny řezů: velké 400, malé 500. Čím větší nadpis, tím lehčí.</li>
+          <li>Fonty self-hostované, s <span class="mono" style="font-size:12.5px;">unicode-range</span> pro latin i latin-ext.</li>
         </ul>
       </div>
       <div class="dd-col dont">
@@ -505,6 +555,8 @@
           <li>Nestavět identitu Ethel na samotné barvě — azurová je blízko generické „AI modré", identitu nese wordmark, tečka a tón. Barva ji jen doprovází.</li>
           <li>Magenta v žádném materiálu, dokud nemá vlastní produkt — ať si podrží hodnotu „další barvy v řadě".</li>
           <li>Skládat písmeno a tečku monogramu jako dva samostatně centrované prvky — vždy jeden textový běh.</li>
+          <li>Roztahovat obsah přes celou šířku okna. Kontejner 1200 px; od kraje ke kraji jde jen hero.</li>
+          <li>Tahat písma z <span class="mono" style="font-size:12.5px;">fonts.googleapis.com</span> — a nikdy ne bez <span class="mono" style="font-size:12.5px;">unicode-range</span>.</li>
         </ul>
       </div>
     </div>
@@ -515,6 +567,7 @@
   <div class="wrap">
     <div class="comp-label" style="margin-bottom:14px;">Changelog</div>
     <div class="changelog">
+      <div class="row"><div class="d">26. 7. 2026</div><div>v1.2 — přidána sekce Layout a fonty: kontejner 1200 px, hero od kraje ke kraji s fotkou vázanou na textový sloupec, řezy nadpisů (velké 400 / malé 500) a self-hosting fontů včetně povinného <span class="mono" style="font-size:12.5px;">unicode-range</span> pro češtinu. Tokeny doplněny o typografii a layout. Ověřeno v praxi na jakubsevela.cz.</div></div>
       <div class="row"><div class="d">25. 7. 2026</div><div>v1.1 — oprava: tečka wordmarku nyní skutečně 125 % (v1.0 byla jen bold). Přidány sekce Přístupnost (změřené WCAG kontrasty) a CSS tokeny, hover stavy tlačítek (18 % / 50 %), styl odkazů, zpřesněná pravidla Ano/Ne.</div></div>
       <div class="row"><div class="d">25. 7. 2026</div><div>v1 manuálu založen. Ethel: magenta → azurová #56a8e8. Magenta uvolněna jako rezerva. Přidána neutrální šedá #9c9c9c pro admin/utility.</div></div>
       <div class="row"><div class="d">24. 7. 2026</div><div>Rozhodnuta vizuální identita — paleta (jantar/magenta/limetka), Space Grotesk wordmark, pravidlo tečky, monogramy, tónované buttony.</div></div>

@@ -29,6 +29,14 @@
   --font-mono: 'DM Mono', ui-monospace, monospace;
   --font-wordmark: 'Space Grotesk', sans-serif;  /* JEN wordmark a monogram */
 
+  /* Čím větší nadpis, tím lehčí řez. Velké nadpisy v Lora 400 nekonkurují
+     fotce ani accentu; malé by ve 400 byly bez důrazu, proto 500. */
+  --weight-display: 400;   /* h1, h2 — velké nadpisy */
+  --weight-heading: 500;   /* h3, h4 — nadpisy karet a bloků */
+
+  /* --- layout --- */
+  --content-max: 1200px;   /* obsahový kontejner; hero je výjimka od kraje ke kraji */
+
   /* --- accent: jakubsevela.cz = jantar (~40°) --- */
   --accent: #dfa63e;
   --accent-l: #eab55c;

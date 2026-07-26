@@ -35,6 +35,13 @@ Nikdy nepiš hexy natvrdo. Kompletní manuál je na `/brand/`.
   Plné barevné plochy jsou zakázané.
 - **Typografie:** Lora (nadpisy) / DM Sans (text a UI) / DM Mono (detaily, kódy, labely) /
   Space Grotesk **jen** pro wordmark a monogram, nikde jinde.
+- **Řezy nadpisů: čím větší, tím lehčí.** `h1`/`h2` v Lora **400** (`--weight-display`),
+  `h3`/`h4` v **500** (`--weight-heading`). Nikdy nepiš váhu natvrdo. Velký nadpis
+  v 600 konkuruje fotce i accentu — proto 400.
+- **Šířka:** obsah v `--content-max` (1200 px). Hero je jediná sekce od kraje ke kraji;
+  text v něm ale drží stejný `.wrap`, aby levá hrana lícovala se zbytkem stránky.
+  Levou hranu hero fotky vázat na konec textového sloupce, ne na procento viewportu —
+  jinak na širokém monitoru podjede text.
 - **Wordmark:** `jakub<span class="dot">.</span>ševela`, malými písmeny.
   Tečka bold 700 + `font-size: 1.25em`. Univerzální pravidlo, bez výjimek.
 - **Radius:** tlačítka 8 px, karty 12 px.
