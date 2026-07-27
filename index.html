@@ -179,7 +179,6 @@ section.alt { background: var(--bg-alt); }
 .sec-head { margin-bottom: 44px; max-width: 720px; }
 .sec-num { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-3); margin-bottom: 12px; }
 .sec-head h2 { font-size: clamp(1.75rem, 3.2vw, 2.3rem); }
-.sec-head p { color: var(--text-2); margin-top: 12px; max-width: 60ch; }
 
 /* ---------- cards ---------- */
 .grid { display: grid; gap: 20px; }
@@ -251,8 +250,6 @@ section.alt { background: var(--bg-alt); }
 .list-card ul { list-style: none; margin-top: 10px; }
 .list-card li { color: var(--text-2); padding: 7px 0 7px 22px; position: relative; font-size: 0.98rem; }
 .list-card li::before { content: ''; position: absolute; left: 4px; top: 1em; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: 0.75; }
-.list-card p { color: var(--text-2); line-height: 1.55; }
-.list-card ul + p { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
 .span-all { grid-column: 1 / -1; }
 
 /* ---------- reference ---------- */
@@ -551,41 +548,37 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
     <div class="sec-head">
       <div class="sec-num">02</div>
       <h2>Zakázkový vývoj a spolupráce</h2>
-      <p>Helios programuju osmnáct let. Většina zakázek začíná stejně: v systému je proces, který drží pohromadě jen proto, že ho někdo ručně obchází – přepisuje čísla mezi systémy, tahá data do Excelu nebo hlídá termíny v hlavě.</p>
     </div>
 
     <div class="grid grid-2">
       <div class="list-card">
-        <h3>S čím za mnou firmy chodí</h3>
+        <h3>Nejčastější typy projektů</h3>
         <ul>
-          <li>Propojení Heliosu s dalším systémem – e-shop, dokladová služba, CRM, sklad dodavatele. Přes API, feed nebo přímo databázi.</li>
-          <li>Vlastní modul na agendu, kterou standardní Helios neřeší. Třeba správu nemovitostí a rozúčtování nákladů, kterou vyvíjím s kolegy z LXC.</li>
-          <li>Externí akce, která nahradí sled ručních kroků. Pro MIRA MAR jsem takovou akci naprogramoval do týdne od zadání.</li>
-          <li>Reporting a datový sklad, aby se čísla z Heliosu dala číst bez exportu do Excelu. Pro Loomis ho stavím od roku 2019.</li>
-          <li>Migrace a pravidelné importy dat z Excelu, XML, JSONu nebo cizího API.</li>
+          <li>integrace Heliosu s jiným systémem přes API</li>
+          <li>automatizace obchodních procesů</li>
+          <li>vývoj specializovaného modulu do Heliosu</li>
+          <li>převody dat, importy z Excelu, JSONu atp.</li>
         </ul>
       </div>
 
       <div class="list-card">
-        <h3>Jak pracuju</h3>
+        <h3>Moje principy</h3>
         <ul>
-          <li>Napřed proces, potom kód. Ptám se, proč ten krok vůbec existuje; občas z toho vyjde, že se nemá zautomatizovat, ale zrušit.</li>
-          <li>Dodávám po částech. První verze pokrývá to nejbolavější a jde rovnou do provozu, zbytek doplňuju podle toho, co se v ostrém běhu ukáže.</li>
-          <li>Než začnu, dostanete odhad rozsahu i ceny. Žádná otevřená hodinovka bez stropu.</li>
-          <li>Píšu to tak, aby na to mohl navázat někdo jiný. Kód i dokumentace zůstávají u vás.</li>
-          <li>Dělám to pro lidi, kteří v Heliosu sedí celý den. Když jim hotová úprava přidá další krok navíc, něco je špatně.</li>
+          <li>vytvářím čistý a zdokumentovaný kód</li>
+          <li>nejdříve zjednodušení procesu, pak až automatizace</li>
+          <li>inkrementální vývoj, postupné zkvalitňování systému</li>
+          <li>výsledek musí uživateli ulehčit práci, ne ji přidávat</li>
         </ul>
       </div>
 
       <div class="list-card span-all">
-        <h3>Kdy dává smysl mi napsat</h3>
+        <h3>Jste můj zákazník, pokud...</h3>
         <ul>
-          <li>Máte Helios a proces, o kterém sami říkáte, že ho pořád děláte ručně.</li>
-          <li>Slyšeli jste, že to Helios neumí, a tušíte, že to půjde obejít.</li>
-          <li>Potřebujete Helios propojit s e-shopem, dokladovou službou nebo systémem partnera.</li>
-          <li>Chcete jen názor na to, jestli má úprava smysl a co by zhruba stála.</li>
+          <li>chcete rozvíjet firmu, šetřit náklady a zbavit se rutinní práce</li>
+          <li>hledáte parťáka na Helios a spolupráci nad rámec běžné podpory</li>
+          <li>preferujete spolupráci s freelancerem (ale chápete i její nevýhody)</li>
+          <li>nebo jen potřebujete poradit, posunout řešení problému nebo najít vhodnější osobu</li>
         </ul>
-        <p>Počítejte s tím, že jednáte s jedním člověkem. Jsem pružnější než dodavatelský tým a rozhodnutí padne hned, zároveň mám jednu kapacitu – když poběží tři velké věci najednou, poznáte to na termínech. Implementaci Heliosu od nuly ani správu serverů neberu; když potřebujete tohle, řeknu to rovnou a nasměruju vás jinam.</p>
       </div>
     </div>
   </div>
