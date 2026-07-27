@@ -281,6 +281,73 @@ section.alt { background: var(--bg-alt); }
 .contact-card a { font-size: 1.05rem; color: var(--accent-l); text-decoration: none; word-break: break-word; }
 .contact-card a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
+/* ---------- kontaktní formulář (komponenta z manuálu, sekce 07 – shodná se feedco.cz/ethel.cz) ---------- */
+.contact-form { max-width: 560px; }
+.contact-form .field + .field { margin-top: 18px; }
+.contact-form label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12.5px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-2);
+  margin-bottom: 7px;
+}
+.contact-form label .opt { color: var(--text-3); text-transform: none; letter-spacing: 0.04em; }
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+  width: 100%; display: block;
+  font-family: var(--font-body); font-size: 15.5px; line-height: 1.6;
+  color: var(--text); background: var(--bg-alt);
+  border: 1px solid var(--border-2); border-radius: var(--radius-btn);
+  padding: 12px 14px; outline: 0;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.contact-form textarea { min-height: 160px; resize: vertical; }
+.contact-form ::placeholder { color: var(--text-3); }
+.contact-form input:hover, .contact-form textarea:hover { border-color: rgba(255,255,255,0.22); }
+.contact-form input:focus-visible, .contact-form textarea:focus-visible {
+  border-color: var(--accent-border-hover);
+  box-shadow: 0 0 0 3px var(--accent-tint);
+}
+.contact-form .hp { position: absolute; left: -9999px; }
+.contact-form .submit-row { margin-top: 26px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.contact-form .privacy-note { font-size: 13.5px; color: var(--text-3); }
+
+.form-status {
+  display: none; gap: 16px; align-items: flex-start;
+  max-width: 560px;
+  background: var(--card);
+  border: 1px solid var(--accent-border);
+  border-radius: var(--radius-card);
+  padding: 22px 24px;
+  margin-top: 20px;
+}
+.form-status.is-visible { display: flex; }
+.form-status .fs-icon {
+  flex: 0 0 auto;
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--accent-tint);
+  color: var(--accent-l);
+}
+.form-status .fs-icon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.form-status h4 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-heading);
+  font-size: 18px; line-height: 1.35;
+  margin-bottom: 2px;
+}
+.form-status p { font-size: 15px; line-height: 1.6; color: var(--text-2); }
+.form-status p a { color: var(--accent-l); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.form-status p a:hover { text-decoration-thickness: 2px; }
+.form-status.is-error { border-color: var(--danger-border); }
+.form-status.is-error .fs-icon { background: var(--danger-tint); color: var(--danger-l); }
+.form-status.is-limit { border-color: var(--neutral-border); }
+.form-status.is-limit .fs-icon { background: var(--neutral-tint); color: var(--neutral-l); }
+
 /* ---------- footer ---------- */
 /* Stejná stavba jako na feedco.cz: wordmark, tři sloupce, právní pata. */
 footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: var(--bg-alt); }
@@ -632,10 +699,60 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
   <div class="wrap">
     <div class="sec-head">
       <div class="sec-num">04</div>
-      <h2>Jak se můžeme spojit</h2>
+      <h2>Napište mi</h2>
+      <p style="color:var(--text-2);margin-top:12px;max-width:60ch">Popište stručně, co řešíte – ozvu se do dvou pracovních dnů.</p>
     </div>
 
-    <div class="grid grid-3">
+    <div class="form-status" id="status-ok" role="status">
+      <div class="fs-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.5 10 18 19.5 6.5"/></svg></div>
+      <div>
+        <h4>Díky za zprávu</h4>
+        <p>Ozvu se do dvou pracovních dnů. Potvrzení jsem poslal i na váš e-mail.</p>
+      </div>
+    </div>
+    <div class="form-status is-error" id="status-err" role="alert">
+      <div class="fs-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></div>
+      <div>
+        <h4>Zprávu se nepodařilo odeslat</h4>
+        <p>Zkuste to prosím znovu, nebo napište rovnou na <a href="mailto:jakub.sevela@gmail.com">jakub.sevela@gmail.com</a>.</p>
+      </div>
+    </div>
+    <div class="form-status is-limit" id="status-limit" role="status">
+      <div class="fs-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></div>
+      <div>
+        <h4>Zpráv bylo za poslední chvíli víc</h4>
+        <p>Zkuste to prosím za pár minut, nebo napište rovnou na <a href="mailto:jakub.sevela@gmail.com">jakub.sevela@gmail.com</a>.</p>
+      </div>
+    </div>
+
+    <form class="contact-form" id="kontakt-form" action="https://gygwfcattcunbikootbx.supabase.co/functions/v1/web-lead" method="POST" style="margin-top:20px">
+      <div class="field">
+        <label for="kf-name">Jméno / název firmy</label>
+        <input type="text" id="kf-name" name="name" maxlength="128" placeholder="Jan Novák, Firma s.r.o." required>
+      </div>
+      <div class="field">
+        <label for="kf-email">E-mail</label>
+        <input type="email" id="kf-email" name="email" maxlength="128" placeholder="jan@firma.cz" required>
+      </div>
+      <div class="field">
+        <label for="kf-phone">Telefon <span class="opt">– nepovinné</span></label>
+        <input type="tel" id="kf-phone" name="phone" pattern="[0-9\-\(\)+ #*]+" minlength="7" maxlength="28" placeholder="+420 ...">
+      </div>
+      <div class="field hp" aria-hidden="true">
+        <label for="kf-mail">Mail</label>
+        <input type="text" id="kf-mail" name="mail" maxlength="128" tabindex="-1" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="kf-message">Zpráva</label>
+        <textarea id="kf-message" name="message" maxlength="16384" placeholder="S čím potřebujete pomoct?" required></textarea>
+      </div>
+      <div class="submit-row">
+        <button type="submit" class="btn btn-primary">Odeslat zprávu</button>
+        <p class="privacy-note">Odpovídám do dvou pracovních dnů.</p>
+      </div>
+    </form>
+
+    <div class="grid grid-3" style="margin-top:48px">
       <div class="contact-card">
         <div class="k">E-mail</div>
         <a href="mailto:jakub.sevela@gmail.com">jakub.sevela@gmail.com</a>
@@ -675,6 +792,7 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
       <nav class="ft-col" aria-label="Kontakt">
         <a href="mailto:jakub.sevela@gmail.com"><span class="ft-name">jakub.sevela@gmail.com</span></a>
         <a href="tel:+420774267301"><span class="ft-name" style="white-space:nowrap">+420&nbsp;774&nbsp;267&nbsp;301</span></a>
+        <a href="#kontakt"><span class="ft-name">Napsat zprávu</span></a>
         <a href="https://linkedin.com/in/sevela" rel="me noopener" class="has-icon"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.852 3.37-1.852 3.601 0 4.267 2.37 4.267 5.455v6.288zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg><span class="ft-name">LinkedIn</span></a>
       </nav>
     </div>
@@ -712,6 +830,33 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
     top.classList.toggle('show', window.scrollY > 600);
   }, { passive: true });
 })();
+</script>
+
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var form = document.getElementById('kontakt-form');
+    if (!form) return;
+
+    function show(id) {
+      var el = document.getElementById(id);
+      if (el) el.classList.add('is-visible');
+    }
+
+    if (params.has('odeslano')) {
+      show('status-ok');
+      form.style.display = 'none';
+    } else if (params.has('chyba')) {
+      show(params.get('chyba') === 'limit' ? 'status-limit' : 'status-err');
+    }
+
+    if (params.has('odeslano') || params.has('chyba')) {
+      params.delete('odeslano');
+      params.delete('chyba');
+      var newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '') + window.location.hash;
+      window.history.replaceState({}, '', newUrl);
+    }
+  })();
 </script>
 
 </body>

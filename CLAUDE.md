@@ -108,12 +108,18 @@ Nadpis H1 je o návštěvníkovi, ne o byznys modelu. Jména produktů do H1 nep
 - Neměnit `CNAME` a nemazat `.nojekyll`. Bez `.nojekyll` Pages ignoruje soubory
   začínající podtržítkem.
 - Nepřidávat PHP ani nic serverového – Pages umí jen statické soubory.
-  Formuláře jdou přes Formspree (endpoint `xkgnqpnz` je v `/nahled/`).
+  Kontaktní formulář jde přes sdílenou Supabase edge funkci `web-lead`
+  (`https://gygwfcattcunbikootbx.supabase.co/functions/v1/web-lead`), stejně
+  jako feedco.cz a ethel.cz – žádný Formspree na hubu. `/nahled/` má pořád
+  starý Formspree endpoint `xkgnqpnz`, k živému webu se nevztahuje.
 
 ## Známý technický dluh
 
-- **Na živém webu není kontaktní formulář**, jen e-mail, telefon a LinkedIn.
-  Formulář je připravený v `/nahled/` (Formspree `xkgnqpnz`) – čeká na doplnění.
+- **Kontaktní formulář na živém webu přidán 27. 7. 2026** – vlastní backend
+  `web-lead` (Supabase, sdílený s feedco.cz a ethel.cz), notifikace chodí na
+  jakub.sevela@gmail.com. Odesílá se z `noreply@feedco.cz` (jediná doména
+  ověřená v Resendu na free plánu, 1 doména) – kosmetický kompromis (from
+  adresa nese doménu feedco.cz), ne chyba; DKIM/SPF/DMARC jsou v pořádku.
 - **`/nahled/` má portrét v hero jako base64 data URI** (~215 KB). Vytáhnout do souboru.
 - **`/nahled/` tahá fonty z Google Fonts CDN.** Přepnout na `/brand/fonts.css` jako root.
 - `programatorhelios.cz` je volný konec z roku 2020 – žije na jiné IP, k úklidu.
