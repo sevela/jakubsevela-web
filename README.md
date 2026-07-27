@@ -1,29 +1,29 @@
 # jakubsevela.cz
 
-Osobní web Jakuba Ševely — specialista na Helios Inuvio. Hub v architektuře hub-and-spoke;
+Osobní web Jakuba Ševely – specialista na Helios Inuvio. Hub v architektuře hub-and-spoke;
 produktové weby [ethel.cz](https://ethel.cz) a [feedco.cz](https://feedco.cz) stojí samostatně.
 
 Statický web bez buildu. Nasazuje GitHub Pages z branch `main`, root.
 
 ```
-index.html            živý web — nový brand, texty přenesené 1:1 ze staré verze
+index.html            živý web – nový brand, texty přenesené 1:1 ze staré verze
 og-image.png          náhledový obrázek pro sdílení, generovaný
 images/               fotky referencí, loga klientů, favicon
 fonts/brand/          self-hostované woff2 (Lora, DM Sans, DM Mono, Space Grotesk)
 
-nahled/index.html     obsahová varianta v9 — jiné texty, noindex
+nahled/index.html     obsahová varianta v9 – jiné texty, noindex
 brand/
   tokens.css          zdroj pravdy pro barvy, typografii, radiusy
   fonts.css           @font-face deklarace, generované
-  index.html          grafický manuál v1.2 — JEDINÁ verze, ostatní repa sem odkazují
+  index.html          grafický manuál v1.2 – JEDINÁ verze, ostatní repa sem odkazují
 scripts/
   build-fonts.js      generuje fonts/brand/ + brand/fonts.css z npm @fontsource
   generate-og.js      generuje og-image.png ze scripts/og-image.html
 CNAME                 jakubsevela.cz
-.nojekyll             vypíná Jekyll — bez toho Pages ignoruje soubory s podtržítkem
+.nojekyll             vypíná Jekyll – bez toho Pages ignoruje soubory s podtržítkem
 robots.txt            zakazuje /brand/ a /nahled/
 sitemap.xml
-CLAUDE.md             pravidla pro práci v repu — přečti dřív než začneš
+CLAUDE.md             pravidla pro práci v repu – přečti dřív než začneš
 ```
 
 ## Lokální náhled
@@ -50,6 +50,6 @@ Spouštět jen když přibude nový řez písma. Detaily v `CLAUDE.md`.
 
 ## Grafický manuál
 
-`/brand/` — živý dokument a **jediná verze**. `feedco-web` ani `ethel-web` kopii nemají,
+`/brand/` – živý dokument a **jediná verze**. `feedco-web` ani `ethel-web` kopii nemají,
 odkazují na https://jakubsevela.cz/brand/. Při změně palety nebo komponent aktualizuj manuál tady
 a propiš `tokens.css` do zbylých dvou rep.

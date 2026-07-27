@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <title>Jakub Ševela - Solution architect pro Helios Inuvio</title>
-<meta name="description" content="Pomáhám firmám zjednodušit práci s Heliosem. Navrhuji integrace, automatizace a AI řešení — propojuji Helios s okolními systémy a vytvářím vlastní produkty.">
+<meta name="description" content="Pomáhám firmám zjednodušit práci s Heliosem. Navrhuji integrace, automatizace a AI řešení – propojuji Helios s okolními systémy a vytvářím vlastní produkty.">
 <meta name="keywords" content="Inuvio, HELIOS Orange, programátor HELIOS, HELIOS e-shop, HELIOS integrace, HELIOS Comgate, konzultant HELIOS, řešení HELIOS, vývoj HELIOS, rozšíření HELIOS, HELIOS partner, HELIOS Upgates, Upgates">
 <meta name="author" content="Jakub Ševela">
 <link rel="canonical" href="https://jakubsevela.cz/">
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="cs_CZ">
 <meta property="og:url" content="https://jakubsevela.cz/">
 <meta property="og:title" content="Jakub Ševela - Solution architect pro Helios Inuvio">
-<meta property="og:description" content="Pomáhám firmám zjednodušit práci s Heliosem. Navrhuji integrace, automatizace a AI řešení — propojuji Helios s okolními systémy a vytvářím vlastní produkty.">
+<meta property="og:description" content="Pomáhám firmám zjednodušit práci s Heliosem. Navrhuji integrace, automatizace a AI řešení – propojuji Helios s okolními systémy a vytvářím vlastní produkty.">
 <meta property="og:image" content="https://jakubsevela.cz/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -62,9 +62,9 @@ a { color: inherit; }
 .text-link { color: var(--accent-l); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .text-link:hover { text-decoration-thickness: 2px; }
 
-/* Obsahový kontejner je záměrně omezený — řádek textu přes celou šířku
+/* Obsahový kontejner je záměrně omezený – řádek textu přes celou šířku
    2560px monitoru se nedá číst. Hero jde od kraje ke kraji, protože fotka
-   uvnitř kontejneru by vypadala nalepeně — text v něm ale drží stejný .wrap. */
+   uvnitř kontejneru by vypadala nalepeně – text v něm ale drží stejný .wrap. */
 .wrap { max-width: var(--content-max); margin: 0 auto; padding: 0 32px; }
 
 /* ---------- wordmark ---------- */
@@ -114,7 +114,7 @@ nav.site .wordmark { font-size: 26px; }
 .btn-row { display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
 
 /* ---------- hero ---------- */
-/* Jediná sekce, která jde od kraje ke kraji — fotka v kontejneru
+/* Jediná sekce, která jde od kraje ke kraji – fotka v kontejneru
    by vypadala jako obrázek nalepený do stránky. Text uvnitř ale drží
    stejný .wrap jako zbytek webu, aby levá hrana lícovala. */
 header.hero {
@@ -145,7 +145,7 @@ header.hero::before {
   background: radial-gradient(circle, rgba(var(--accent-rgb),0.10) 0%, rgba(var(--accent-rgb),0) 68%);
   pointer-events: none;
 }
-/* width:100% je nutné — .wrap je tu flex item, bez toho se smrskne na šířku
+/* width:100% je nutné – .wrap je tu flex item, bez toho se smrskne na šířku
    obsahu, margin:0 auto ho vycentruje a hero přestane lícovat se sekcemi. */
 header.hero .wrap { position: relative; z-index: 1; width: 100%; }
 .hero-label {
@@ -191,6 +191,9 @@ section.alt { background: var(--bg-alt); }
   display: flex; flex-direction: column;
 }
 .card h3 { font-size: 1.28rem; margin-bottom: 16px; }
+.card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.card-head .mark { flex: 0 0 auto; border-radius: 22.5%; }
+.card-head h3 { margin-bottom: 0; }
 .card p { color: var(--text-2); }
 .card p + p { margin-top: 14px; }
 .card .btn-row { margin-top: auto; padding-top: 26px; }
@@ -247,7 +250,7 @@ section.alt { background: var(--bg-alt); }
   font-family: var(--font-mono); font-size: 1.1rem; color: var(--accent-l);
   background: var(--accent-tint); border: 1px solid var(--accent-border);
 }
-/* jméno / pozice / firma — vždy tři řádky, dlouhý text se zkrátí (…), ne zalomí */
+/* jméno / pozice / firma – vždy tři řádky, dlouhý text se zkrátí (…), ne zalomí */
 .quote-card .who-info { min-width: 0; }
 .quote-card .name, .quote-card .role, .quote-card .company {
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -380,12 +383,15 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
     <div class="grid">
 
       <article class="card">
-        <h3>Ethel — AI asistentka pro Helios Inuvio</h3>
+        <div class="card-head">
+          <img class="mark" src="images/marks/ethel.svg" width="32" height="32" alt="">
+          <h3>Ethel – AI asistentka pro Helios Inuvio</h3>
+        </div>
         <p>Ethel využívá znalosti z Heliosu i vaší firmy. Díky tomu dokáže vyhledávat informace, odpovídat na otázky i provádět úkoly přímo v Heliosu.</p>
         <p class="lead-in">Co to konkrétně znamená:</p>
         <ul>
           <li>Najde informaci nebo vysvětlí sestavu, sloupec i akci</li>
-          <li>Provede úkol přímo v Heliosu — třeba vystaví fakturu z objednávky, vždy se schválením před uložením</li>
+          <li>Provede úkol přímo v Heliosu – třeba vystaví fakturu z objednávky, vždy se schválením před uložením</li>
           <li>Zná nápovědu Heliosu a poradí, jak na danou věc postupovat</li>
           <li>Rozumí SQL v Heliosu, umí sestavit dotaz nebo vysvětlit existující</li>
         </ul>
@@ -398,15 +404,18 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
       </article>
 
       <article class="card">
-        <h3>Feedco — e-commerce konektor pro Helios Inuvio</h3>
+        <div class="card-head">
+          <img class="mark" src="images/marks/feedco.svg" width="32" height="32" alt="">
+          <h3>Feedco – e-commerce konektor pro Helios Inuvio</h3>
+        </div>
         <p>Feedco automatizuje přenos dat mezi Heliosem, e-shopy a vašimi obchodními partnery. Synchronizuje objednávky, produkty, sklady i ceny a zjednodušuje každodenní provoz.</p>
         <p class="lead-in">Pět modulů, každý řeší jednu část provozu a platí se zvlášť:</p>
         <ul>
-          <li>E-shop konektor — objednávky z Upgates nebo Shoptet padají rovnou do Heliosu, stavy expedice a sklad se synchronizují zpátky</li>
-          <li>Feed konektor — ceníky a dostupnost od dodavatelů se načítají z XML nebo CSV feedů přímo do Heliosu</li>
-          <li>Přijaté objednávky — vystavení faktury, párování plateb a notifikace zákazníkovi bez ručních kroků</li>
-          <li>Vydané objednávky — generuje objednávky dodavatelům podle zásob; u Younger Optics tahle automatizace zkrátila týdenní práci s objednávkami ze čtyř hodin na půl hodiny</li>
-          <li>Feedco API — REST API nad Heliosem pro e-shopy mimo Upgates a Shoptet</li>
+          <li>E-shop konektor – objednávky z Upgates nebo Shoptet padají rovnou do Heliosu, stavy expedice a sklad se synchronizují zpátky</li>
+          <li>Feed konektor – ceníky a dostupnost od dodavatelů se načítají z XML nebo CSV feedů přímo do Heliosu</li>
+          <li>Přijaté objednávky – vystavení faktury, párování plateb a notifikace zákazníkovi bez ručních kroků</li>
+          <li>Vydané objednávky – generuje objednávky dodavatelům podle zásob; u Younger Optics tahle automatizace zkrátila týdenní práci s objednávkami ze čtyř hodin na půl hodiny</li>
+          <li>Feedco API – REST API nad Heliosem pro e-shopy mimo Upgates a Shoptet</li>
         </ul>
 
         <div class="meta">
