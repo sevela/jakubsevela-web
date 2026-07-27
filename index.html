@@ -191,9 +191,26 @@ section.alt { background: var(--bg-alt); }
   display: flex; flex-direction: column;
 }
 .card h3 { font-size: 1.28rem; margin-bottom: 16px; }
-.card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-.card-head .mark { flex: 0 0 auto; border-radius: 22.5%; }
-.card-head h3 { margin-bottom: 0; }
+
+/* Featured karty (Ethel, Feedco) nesou vlastní logotyp a barvu daného produktu –
+   jediná výjimka z pravidla „nikdy hex natvrdo": jde o barvu jiného webu z palety
+   manuálu, ne o accent token hubu, proto lokální custom property místo tokens.css. */
+.card-head { margin-bottom: 18px; }
+.card-head .mark {
+  font-family: var(--font-wordmark); font-weight: 500; font-size: 1.9rem; line-height: 1;
+  text-transform: lowercase; letter-spacing: -0.01em; color: var(--text); margin-bottom: 8px;
+}
+.card-head .mark .dot { font-weight: 700; font-size: 1.25em; line-height: 1; }
+.card-head .tagline {
+  font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-3);
+}
+.card-featured { border-color: rgba(var(--mark-rgb), 0.22); background: linear-gradient(165deg, rgba(var(--mark-rgb), 0.06), transparent 55%) var(--card); }
+.card-featured .mark .dot { color: rgb(var(--mark-rgb)); }
+.card-featured .btn-secondary { border-color: rgba(var(--mark-rgb), 0.35); color: var(--mark-color-l); }
+.card-featured .btn-secondary:hover { background: rgba(var(--mark-rgb), 0.12); border-color: rgba(var(--mark-rgb), 0.5); }
+.card-ethel { --mark-rgb: 86, 168, 232; --mark-color-l: #74b8ee; }
+.card-feedco { --mark-rgb: 158, 212, 85; --mark-color-l: #b3de79; }
 .card p { color: var(--text-2); }
 .card p + p { margin-top: 14px; }
 .card .btn-row { margin-top: auto; padding-top: 26px; }
@@ -382,10 +399,10 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
 
     <div class="grid">
 
-      <article class="card">
+      <article class="card card-featured card-ethel">
         <div class="card-head">
-          <img class="mark" src="images/marks/ethel.svg" width="32" height="32" alt="">
-          <h3>Ethel – AI asistentka pro Helios Inuvio</h3>
+          <h3 class="mark">ethel<span class="dot">.</span></h3>
+          <p class="tagline">AI asistentka pro Helios Inuvio</p>
         </div>
         <p>Ethel využívá znalosti z Heliosu i vaší firmy. Díky tomu dokáže vyhledávat informace, odpovídat na otázky i provádět úkoly přímo v Heliosu.</p>
         <p class="lead-in">Co to konkrétně znamená:</p>
@@ -403,10 +420,10 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
         </div>
       </article>
 
-      <article class="card">
+      <article class="card card-featured card-feedco">
         <div class="card-head">
-          <img class="mark" src="images/marks/feedco.svg" width="32" height="32" alt="">
-          <h3>Feedco – e-commerce konektor pro Helios Inuvio</h3>
+          <h3 class="mark">feedco<span class="dot">.</span></h3>
+          <p class="tagline">E-commerce konektor pro Helios Inuvio</p>
         </div>
         <p>Feedco automatizuje přenos dat mezi Heliosem, e-shopy a vašimi obchodními partnery. Synchronizuje objednávky, produkty, sklady i ceny a zjednodušuje každodenní provoz.</p>
         <p class="lead-in">Pět modulů, každý řeší jednu část provozu a platí se zvlášť:</p>
