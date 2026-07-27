@@ -211,12 +211,12 @@ section.alt { background: var(--bg-alt); }
 .card-featured .btn-secondary:hover { background: rgba(var(--mark-rgb), 0.12); border-color: rgba(var(--mark-rgb), 0.5); }
 .card-ethel { --mark-rgb: 86, 168, 232; --mark-color-l: #74b8ee; }
 .card-feedco { --mark-rgb: 158, 212, 85; --mark-color-l: #b3de79; }
-.card p { color: var(--text-2); }
+.card p { color: var(--text-2); line-height: 1.55; }
 .card p + p { margin-top: 14px; }
 .card .btn-row { margin-top: auto; padding-top: 26px; }
 .card ul { list-style: none; margin: 14px 0; }
 .card ul li {
-  color: var(--text-2); padding: 6px 0 6px 22px; position: relative; font-size: 0.98rem;
+  color: var(--text-2); padding: 5px 0 5px 22px; position: relative; font-size: 0.98rem; line-height: 1.5;
 }
 .card ul li::before {
   content: ''; position: absolute; left: 4px; top: 0.95em;
@@ -466,6 +466,8 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
 
     <div class="grid">
 
+      <div class="grid grid-2">
+
       <article class="card card-featured card-ethel">
         <div class="card-head">
           <h3 class="mark">ethel<span class="dot">.</span></h3>
@@ -516,6 +518,8 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
           <a class="btn btn-secondary" href="https://feedco.cz">Více na feedco.cz</a>
         </div>
       </article>
+
+      </div>
 
       <div class="meta-label" style="margin-top: 8px;">Další realizace na míru</div>
       <div class="grid grid-2">
@@ -641,6 +645,19 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
 
       <figure class="quote-card">
         <div class="quote-mark">&ldquo;</div>
+        <div class="body">Jako obchodní firma jsme dlouho hledali vhodné řešení pro napojení a zpracování produktových dat. Řešení jsme našli v produktu Feedco. V jeho autorovi jsme našli skutečného partnera pro řešení našich požadavků.</div>
+        <figcaption class="who">
+          <img class="avatar" src="images/resource/kolar.jpg" alt="Ing. Zdeněk Kolář" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar-initials',textContent:'ZK'}))">
+          <div class="who-info">
+            <div class="name" title="Ing. Zdeněk Kolář">Ing. Zdeněk Kolář</div>
+            <div class="role" title="Specialista e-commerce">Specialista e-commerce</div>
+            <div class="company" title="ŠIMEK proficentrum s.r.o.">ŠIMEK proficentrum s.r.o.</div>
+          </div>
+        </figcaption>
+      </figure>
+
+      <figure class="quote-card">
+        <div class="quote-mark">&ldquo;</div>
         <div class="body">Pan Ševela pro nás od roku 2019 připravuje datový sklad a spolupráce probíhá přesně dle dohody a mých očekávání. Domluvené funkcionality pan Ševela připravuje ve vysoké kvalitě. Oceňuji především jeho flexibilitu, díky které je naše IT schopno pružně reagovat na změny zadání od interních zákazníků.</div>
         <figcaption class="who">
           <div class="avatar-initials">VV</div>
@@ -674,19 +691,6 @@ footer { padding: 56px 0 64px; border-top: 1px solid var(--border); background: 
             <div class="name" title="Petr Štěpán">Petr Štěpán</div>
             <div class="role" title="Asistent prodeje">Asistent prodeje</div>
             <div class="company" title="MIRA MAR s.r.o.">MIRA MAR s.r.o.</div>
-          </div>
-        </figcaption>
-      </figure>
-
-      <figure class="quote-card">
-        <div class="quote-mark">&ldquo;</div>
-        <div class="body">Jako obchodní firma jsme dlouho hledali vhodné řešení pro napojení a zpracování produktových dat. Řešení jsme našli v produktu Feedco. V jeho autorovi jsme našli skutečného partnera pro řešení našich požadavků.</div>
-        <figcaption class="who">
-          <img class="avatar" src="images/resource/kolar.jpg" alt="Ing. Zdeněk Kolář" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar-initials',textContent:'ZK'}))">
-          <div class="who-info">
-            <div class="name" title="Ing. Zdeněk Kolář">Ing. Zdeněk Kolář</div>
-            <div class="role" title="Specialista e-commerce">Specialista e-commerce</div>
-            <div class="company" title="ŠIMEK proficentrum s.r.o.">ŠIMEK proficentrum s.r.o.</div>
           </div>
         </figcaption>
       </figure>
