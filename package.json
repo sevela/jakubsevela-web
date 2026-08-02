@@ -3,7 +3,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build:fonts": "node scripts/build-fonts.js"
+    "build:fonts": "node scripts/build-fonts.js",
+    "build:og": "node scripts/generate-og.js"
   },
   "devDependencies": {
     "@fontsource/dm-mono": "^5.2.5",
